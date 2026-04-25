@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ChatbotFIK - Asisten Akademik</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>🎓 ChatbotFIK</h1>
+    <p>Asisten Akademik Fakultas Ilmu Komputer</p>
+  </div>
+
+  <!-- UPLOAD SECTION -->
+  <div class="upload-section" id="uploadSection">
+    <div class="upload-box" id="uploadBox">
+      <div class="upload-icon">📄</div>
+      <p><strong>Upload KHS Anda</strong></p>
+      <p class="upload-hint">Format PDF • Drag & drop atau klik untuk memilih</p>
+      <input type="file" id="fileInput" accept=".pdf" hidden />
+      <button class="btn-upload" onclick="document.getElementById('fileInput').click()">
+        Pilih File KHS
+      </button>
+    </div>
+    <div class="upload-status" id="uploadStatus"></div>
+  </div>
+
+  <!-- PROFILE CARD (muncul setelah upload) -->
+  <div class="profile-card" id="profileCard" style="display:none">
+    <div class="profile-info">
+      <div class="profile-left">
+        <div class="profile-name" id="profileName"></div>
+        <div class="profile-detail" id="profileDetail"></div>
+      </div>
+      <div class="profile-right">
+        <div class="stat-box">
+          <span class="stat-label">IPK</span>
+          <span class="stat-value" id="statIPK"></span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">IPS</span>
+          <span class="stat-value" id="statIPS"></span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">SKS Tempuh</span>
+          <span class="stat-value" id="statSKS"></span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Progress</span>
+          <span class="stat-value" id="statPersen"></span>
+        </div>
+      </div>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="progress-label" id="progressLabel"></div>
+  </div>
+
+  <!-- CHAT SECTION -->
+  <div class="chat-section" id="chatSection" style="display:none">
+    <div class="chat-box" id="chatBox">
+      <div class="chat-bubble bot">
+        Halo! KHS Anda sudah saya baca. Silakan tanyakan apa saja seputar progress studi Anda 😊
+      </div>
+    </div>
+
+    <!-- QUICK QUESTIONS -->
+    <div class="quick-btns" id="quickBtns">
+      <button onclick="kirimCepat('Berapa IPK saya?')">IPK saya?</button>
+      <button onclick="kirimCepat('Berapa SKS yang sudah saya tempuh?')">SKS tempuh?</button>
+      <button onclick="kirimCepat('Mata kuliah apa saja yang belum saya ambil?')">MK belum diambil?</button>
+      <button onclick="kirimCepat('Apakah saya sudah bisa sidang?')">Bisa sidang?</button>
+      <button onclick="kirimCepat('Tampilkan ringkasan progress studi saya')">Ringkasan</button>
+    </div>
+
+    <!-- INPUT -->
+    <div class="chat-input-wrap">
+      <input type="text" id="chatInput" placeholder="Ketik pertanyaan Anda..." 
+             onkeydown="if(event.key==='Enter') kirimPesan()" />
+      <button class="btn-send" onclick="kirimPesan()">Kirim</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let sessionId = null;
+
+  // ── UPLOAD ──────────────────────────────────
+  document.getElementById('fileInput').addEventListener('change', function() {
+    if (this.files[0]) uploadFile(this.files[0]);
+  });
+
+  // Drag & drop
+  const uploadBox = document.getElementById('uploadBox');
+  uploadBox.addEventListener('dragover', e => { e.preventDefault(); uploadBox.classList.add('drag-over'); });
+  uploadBox.addEventListener('dragleave', () => uploadBox.classList.remove('drag-over'));
+  uploadBox.addEventListener('drop', e => {
+    e.preventDefault();
+    uploadBox.classList.remove('drag-over');
+    if (e.dataTransfer.files[0]) uploadFile(e.dataTransfer.files[0]);
+  });
+
+  function uploadFile(file) {
+    const status = document.getElementById('uploadStatus');
+    status.innerHTML = '<div class="loading">⏳ Memproses KHS, mohon tunggu...</div>';
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    fetch('/upload', { method: 'POST', body: formData })
+      .then(r => r.json())
+      .then(data => {
+        if (data.error) {
+          status.innerHTML = `<div class="error">❌ ${data.error}</div>`;
+          return;
+        }
+        sessionId = data.session_id;
+        tampilkanProfil(data);
+        status.innerHTML = '';
+      })
+      .catch(() => {
+        status.innerHTML = '<div class="error">❌ Terjadi kesalahan. Coba lagi.</div>';
+      });
+  }
+
+  function tampilkanProfil(data) {
+    document.getElementById('profileName').textContent = data.nama;
+    document.getElementById('profileDetail').textContent = `${data.nim} • ${data.prodi}`;
+    document.getElementById('statIPK').textContent   = data.ipk.toFixed(2);
+    document.getElementById('statIPS').textContent   = data.ips.toFixed(2);
+    document.getElementById('statSKS').textContent   = `${data.sks_tempuh} / ${data.sks_total}`;
+    document.getElementById('statPersen').textContent = `${data.persen}%`;
+    document.getElementById('progressBar').style.width = `${data.persen}%`;
+    document.getElementById('progressLabel').textContent =
+      `${data.mk_lulus} MK lulus • ${data.mk_belum} MK belum • Sisa ${data.sks_sisa} SKS`;
+
+    document.getElementById('profileCard').style.display = 'block';
+    document.getElementById('chatSection').style.display = 'block';
+    document.getElementById('uploadSection').style.display = 'none';
+  }
+
+  // ── CHAT ────────────────────────────────────
+  function kirimPesan() {
+    const input = document.getElementById('chatInput');
+    const pesan = input.value.trim();
+    if (!pesan) return;
+    input.value = '';
+    kirimKeDeeepSeek(pesan);
+  }
+
+  function kirimCepat(pesan) {
+    kirimKeDeeepSeek(pesan);
+  }
+
+  function kirimKeDeeepSeek(pesan) {
+    if (!sessionId) return;
+
+    tambahBubble('user', pesan);
+    const typing = tambahBubble('bot', '⏳ Sedang mengetik...');
+
+    fetch('/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: sessionId, pesan: pesan })
+    })
+    .then(r => r.json())
+    .then(data => {
+      typing.remove();
+      if (data.error) {
+        tambahBubble('bot', `❌ ${data.error}`);
+      } else {
+        tambahBubble('bot', data.jawaban);
+      }
+    })
+    .catch(() => {
+      typing.remove();
+      tambahBubble('bot', '❌ Gagal menghubungi server. Coba lagi.');
+    });
+  }
+
+  function tambahBubble(role, teks) {
+    const box    = document.getElementById('chatBox');
+    const bubble = document.createElement('div');
+    bubble.className = `chat-bubble ${role}`;
+    bubble.textContent = teks;
+    box.appendChild(bubble);
+    box.scrollTop = box.scrollHeight;
+    return bubble;
+  }
+</script>
+</body>
+</html>

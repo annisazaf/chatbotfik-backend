@@ -1,0 +1,654 @@
+{
+  "program_studi": "S1 Sains Data",
+  "total_sks": 191,
+  "matakuliah": [
+    {
+      "no": 1,
+      "kode": "SDT124101",
+      "nama": "Matematika Diskrit",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 2,
+      "kode": "SDT124102",
+      "nama": "Aljabar Linear",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 3,
+      "kode": "SDT124103",
+      "nama": "Statistik dan Probabilitas",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 4,
+      "kode": "SDT124104",
+      "nama": "Dasar Pemrograman",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 5,
+      "kode": "SDT124105",
+      "nama": "Pengantar Basis Data",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 6,
+      "kode": "SDT124106",
+      "nama": "Pengantar Sains Data",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 7,
+      "kode": "SDT124107",
+      "nama": "Pengantar Teknologi Informasi",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 1,
+      "kode": "MKW124204",
+      "nama": "Pendidikan Bela Negara",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKWU",
+      "semester": 2
+    },
+    {
+      "no": 2,
+      "kode": "MKW124202",
+      "nama": "Pancasila",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKWU",
+      "semester": 2
+    },
+    {
+      "no": 3,
+      "kode": "MKW124201",
+      "nama": "Pendidikan Agama",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKWU",
+      "semester": 2
+    },
+    {
+      "no": 4,
+      "kode": "SDT124202",
+      "nama": "Sistem Operasi",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 2
+    },
+    {
+      "no": 5,
+      "kode": "SDT124201",
+      "nama": "Pengantar Ilmu Kesehatan",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 2
+    },
+    {
+      "no": 6,
+      "kode": "SDT124205",
+      "nama": "Struktur Data",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 2
+    },
+    {
+      "no": 7,
+      "kode": "SDT124203",
+      "nama": "Algoritma dan Pemrograman Lanjut",
+      "sks": 3,
+      "prasyarat": "Dasar Pemrograman",
+      "keterangan": "MKPS",
+      "semester": 2
+    },
+    {
+      "no": 8,
+      "kode": "SDT124204",
+      "nama": "Matematika Sains Data",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 2
+    },
+    {
+      "no": 1,
+      "kode": "SDT124301",
+      "nama": "Rekayasa Data",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 2,
+      "kode": "SDT124302",
+      "nama": "Analisis Big Data",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 3,
+      "kode": "SDT124303",
+      "nama": "Pemrograman Web",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 4,
+      "kode": "SDT124304",
+      "nama": "Bahasa Inggris",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 5,
+      "kode": "SDT124305",
+      "nama": "Basis Data Lanjut",
+      "sks": 3,
+      "prasyarat": "Pengantar Basis Data",
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 6,
+      "kode": "SDT124306",
+      "nama": "Data Mining",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 7,
+      "kode": "SDT124307",
+      "nama": "Pembelajaran Mesin",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 8,
+      "kode": "SDT124308",
+      "nama": "Interaksi Manusia dan Komputer",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 1,
+      "kode": "SDT124401",
+      "nama": "Arsitektur Big Data (Peminatan DE1)",
+      "sks": 3,
+      "prasyarat": "Pengantar Sains Data",
+      "keterangan": "Peminatan DE",
+      "semester": 4
+    },
+    {
+      "no": 2,
+      "kode": "SDT124402",
+      "nama": "Visualisasi Informasi (Peminatan DA1)",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "Peminatan DA",
+      "semester": 4
+    },
+    {
+      "no": 3,
+      "kode": "SDT124403",
+      "nama": "Internet of Things",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 4
+    },
+    {
+      "no": 4,
+      "kode": "SDT124404",
+      "nama": "Metode Penelitian Sains Data",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 4
+    },
+    {
+      "no": 5,
+      "kode": "SDT124405",
+      "nama": "Kecerdasan Buatan",
+      "sks": 3,
+      "prasyarat": "Pembelajaran Mesin",
+      "keterangan": "MKPS",
+      "semester": 4
+    },
+    {
+      "no": 6,
+      "kode": "SDT124406",
+      "nama": "Pemrograman Berorientasi Objek",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 4
+    },
+    {
+      "no": 7,
+      "kode": "SDT124407",
+      "nama": "Jaringan Komputer",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 4
+    },
+    {
+      "no": 8,
+      "kode": "SDT124408",
+      "nama": "Temu Balik Informasi",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 4
+    },
+    {
+      "no": 9,
+      "kode": "SDT124409",
+      "nama": "Informatika Kesehatan dan Analitik",
+      "sks": 2,
+      "prasyarat": "Pengantar Ilmu Kesehatan",
+      "keterangan": "MKPS",
+      "semester": 4
+    },
+    {
+      "no": 1,
+      "kode": "SDT124501",
+      "nama": "Pembelajaran Mesin Bioinformatika",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 5
+    },
+    {
+      "no": 2,
+      "kode": "SDT124502",
+      "nama": "Data Warehousing for Analytics (Peminatan DE2)",
+      "sks": 3,
+      "prasyarat": "Arsitektur Big Data (Peminatan DE1)",
+      "keterangan": "Peminatan DE",
+      "semester": 5
+    },
+    {
+      "no": 3,
+      "kode": "SDT124503",
+      "nama": "Math Modelling and Software (Peminatan DA2)",
+      "sks": 3,
+      "prasyarat": "Visualisasi Informasi (Peminatan DA1)",
+      "keterangan": "Peminatan DA",
+      "semester": 5
+    },
+    {
+      "no": 4,
+      "kode": "SDT124504",
+      "nama": "Technopreneurship",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 5
+    },
+    {
+      "no": 5,
+      "kode": "SDT124505",
+      "nama": "Pengolahan Citra Digital",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 5
+    },
+    {
+      "no": 6,
+      "kode": "IF",
+      "nama": "Keamanan Data dan Aplikasi",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PLPS",
+      "semester": 5
+    },
+    {
+      "no": 7,
+      "kode": "IF",
+      "nama": "Komputasi Awan",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PLPS",
+      "semester": 5
+    },
+    {
+      "no": 8,
+      "kode": "IF",
+      "nama": "Manajemen Proyek Teknologi Informasi",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PLPS",
+      "semester": 5
+    },
+    {
+      "no": 1,
+      "kode": "SDT124601",
+      "nama": "Kerja Praktik",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 2,
+      "kode": "SDT124602",
+      "nama": "Intuisi dan Wawasan Data",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 3,
+      "kode": "SDT124603",
+      "nama": "Deployment Aplikasi",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 4,
+      "kode": "SDT124604",
+      "nama": "Decision Making",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 5,
+      "kode": "SDT124605",
+      "nama": "Teknologi Finansial",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 6,
+      "kode": "SDT124606",
+      "nama": "Analisis Bisnis",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 7,
+      "kode": "SDT124607",
+      "nama": "Deep Learning",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 8,
+      "kode": "SDT124608",
+      "nama": "Data Storytelling",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 9,
+      "kode": "SDT124609",
+      "nama": "Pengenalan Pola",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 10,
+      "kode": "SDT124610",
+      "nama": "Penjaminan Kualitas Perangkat Lunak",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 11,
+      "kode": "SDT124611",
+      "nama": "Analisis Jejaring Sosial",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 12,
+      "kode": "SDT124612",
+      "nama": "Teknologi Blockchain",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 13,
+      "kode": "SDT124613",
+      "nama": "Pemrosesan Bahasa Alami",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 14,
+      "kode": "SDT124614",
+      "nama": "Teknologi AR/VR",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 15,
+      "kode": "SDT124615",
+      "nama": "Web Semantic",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 16,
+      "kode": "SDT124616",
+      "nama": "AI Computing Platform",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 17,
+      "kode": "SDT124617",
+      "nama": "Process Mining",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 18,
+      "kode": "SDT124618",
+      "nama": "Knowledge Management",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 19,
+      "kode": "SDT124619",
+      "nama": "Startup Digital",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 20,
+      "kode": "SDT124620",
+      "nama": "Computational Thinking",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 21,
+      "kode": "SDT124621",
+      "nama": "Komunikasi Dan Negosiasi",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 22,
+      "kode": "SDT124622",
+      "nama": "Communication Skill",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 6
+    },
+    {
+      "no": 1,
+      "kode": "MKW123706",
+      "nama": "Filsafat Ilmu dan Logika",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKWU",
+      "semester": 7
+    },
+    {
+      "no": 2,
+      "kode": "MKW123707",
+      "nama": "Kewarganegaraan",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKWU",
+      "semester": 7
+    },
+    {
+      "no": 3,
+      "kode": "MKW123703",
+      "nama": "Bahasa Indonesia",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKWU",
+      "semester": 7
+    },
+    {
+      "no": 4,
+      "kode": "MKW123705",
+      "nama": "Kepemimpinan",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKWU",
+      "semester": 7
+    },
+    {
+      "no": 5,
+      "kode": "SDT124701",
+      "nama": "Proyek Data Engineering (Peminatan DE3)",
+      "sks": 3,
+      "prasyarat": "Data Warehousing for Analytics (Peminatan DE2)",
+      "keterangan": "Peminatan DE",
+      "semester": 7
+    },
+    {
+      "no": 6,
+      "kode": "SDT124702",
+      "nama": "Proyek Data Analitik (Peminatan DA3)",
+      "sks": 3,
+      "prasyarat": "Math Modelling and Software (Peminatan DA2)",
+      "keterangan": "Peminatan DA",
+      "semester": 7
+    },
+    {
+      "no": 7,
+      "kode": "SDT124703",
+      "nama": "Ethics in Data Science",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 7
+    },
+    {
+      "no": 8,
+      "kode": "SDT124704",
+      "nama": "Proposal Tugas Akhir",
+      "sks": 2,
+      "prasyarat": "Metode Penelitian Sains Data",
+      "keterangan": "MKPS",
+      "semester": 7
+    },
+    {
+      "no": 9,
+      "kode": "SDT124705",
+      "nama": "Visi Komputer",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 7
+    },
+    {
+      "no": 1,
+      "kode": "SDT124801",
+      "nama": "Tugas Akhir",
+      "sks": 4,
+      "prasyarat": "Proposal Tugas Akhir",
+      "keterangan": "MKPS",
+      "semester": 8
+    }
+  ]
+}

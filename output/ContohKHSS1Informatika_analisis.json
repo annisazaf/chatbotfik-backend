@@ -1,0 +1,1013 @@
+{
+  "nama_mahasiswa": "Annisa Zhafira Adhya",
+  "nim": "2210511106",
+  "program_studi": "S1 Informatika",
+  "ipk": 3.85,
+  "ips": 3.98,
+  "sks_kumulatif": 153,
+  "total_sks_kurikulum": 434,
+  "sks_wajib_lulus": 144,
+  "sks_sudah_tempuh": 167,
+  "sks_belum_tempuh": 267,
+  "jumlah_mk_lulus": 63,
+  "jumlah_mk_belum": 48,
+  "total_semester": 8,
+  "semester_mbkm": 6,
+  "syarat_sidang_sks": 138,
+  "bisa_sidang": true,
+  "peminatan_info": [
+    {
+      "jalur_kode": "CE",
+      "jalur_nama": "Cybersecurity",
+      "jumlah_mk": 1,
+      "sudah_cukup": false,
+      "min_required": 3
+    },
+    {
+      "jalur_kode": "NE",
+      "jalur_nama": "Network",
+      "jumlah_mk": 1,
+      "sudah_cukup": false,
+      "min_required": 3
+    },
+    {
+      "jalur_kode": "SE",
+      "jalur_nama": "Software Engineering",
+      "jumlah_mk": 3,
+      "sudah_cukup": true,
+      "min_required": 3
+    }
+  ],
+  "peminatan_konsisten": false,
+  "peminatan_pesan": "⚠️ Mengambil MK dari 3 jalur peminatan berbeda (CE, NE, SE). Seharusnya hanya 1 jalur.",
+  "mk_sudah_lulus": [
+    {
+      "nama": "Dasar Pemrograman",
+      "kode": "INF124101",
+      "semester_kurikulum": 1,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 2,
+      "M": 8.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Praktikum Dasar Pemrograman",
+      "kode": "INF124102",
+      "semester_kurikulum": 1,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 1,
+      "M": 8.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Statistika dan Probabilitas",
+      "kode": "INF124103",
+      "semester_kurikulum": 1,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 3,
+      "M": 12.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Pengantar Teknologi Informasi",
+      "kode": "INF124104",
+      "semester_kurikulum": 1,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 2,
+      "M": 8.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Konsep Basis Data",
+      "kode": "INF124105",
+      "semester_kurikulum": 1,
+      "nilai": "A-",
+      "HM": 3.75,
+      "SKS": 2,
+      "M": 7.5,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Praktikum Konsep Basis Data",
+      "kode": "INF124106",
+      "semester_kurikulum": 1,
+      "nilai": "A-",
+      "HM": 3.75,
+      "SKS": 1,
+      "M": 7.5,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Kalkulus",
+      "kode": "INF124107",
+      "semester_kurikulum": 1,
+      "nilai": "B+",
+      "HM": 3.5,
+      "SKS": 3,
+      "M": 10.5,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Pendidikan Agama",
+      "kode": "MKW124101",
+      "semester_kurikulum": 1,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 2,
+      "M": 8.0,
+      "keterangan": "MKWU"
+    },
+    {
+      "nama": "Pancasila",
+      "kode": "MKW124102",
+      "semester_kurikulum": 1,
+      "nilai": "A-",
+      "HM": 3.75,
+      "SKS": 2,
+      "M": 7.5,
+      "keterangan": "MKWU"
+    },
+    {
+      "nama": "Bahasa Indonesia",
+      "kode": "MKW124103",
+      "semester_kurikulum": 1,
+      "nilai": "B+",
+      "HM": 3.5,
+      "SKS": 2,
+      "M": 7.0,
+      "keterangan": "MKWU"
+    },
+    {
+      "nama": "Algoritma dan Pemrograman",
+      "kode": "INF124201",
+      "semester_kurikulum": 2,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 2,
+      "M": 8.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Praktikum Algoritma dan Pemrograman",
+      "kode": "INF124202",
+      "semester_kurikulum": 2,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 1,
+      "M": 8.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Struktur Data",
+      "kode": "INF124203",
+      "semester_kurikulum": 2,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 2,
+      "M": 8.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Praktikum Struktur Data",
+      "kode": "INF124204",
+      "semester_kurikulum": 2,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 1,
+      "M": 8.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Aljabar Linier",
+      "kode": "INF124205",
+      "semester_kurikulum": 2,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 3,
+      "M": 12.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Logika Matematika",
+      "kode": "INF124206",
+      "semester_kurikulum": 2,
+      "nilai": "A-",
+      "HM": 3.75,
+      "SKS": 3,
+      "M": 11.25,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Sistem Basis Data",
+      "kode": "INF124207",
+      "semester_kurikulum": 2,
+      "nilai": "A-",
+      "HM": 3.75,
+      "SKS": 2,
+      "M": 7.5,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Praktikum Sistem Basis Data",
+      "kode": "INF124208",
+      "semester_kurikulum": 2,
+      "nilai": "A-",
+      "HM": 3.75,
+      "SKS": 1,
+      "M": 7.5,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Etika Profesi Teknologi Informasi",
+      "kode": "INF124209",
+      "semester_kurikulum": 2,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 2,
+      "M": 8.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Arsitektur dan Organisasi Komputer",
+      "kode": "INF124210",
+      "semester_kurikulum": 2,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 3,
+      "M": 12.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Metode Penelitian",
+      "kode": "INF124301",
+      "semester_kurikulum": 3,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 3,
+      "M": 12.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Manajemen Proyek Perangkat Lunak Project",
+      "kode": "INF124304",
+      "semester_kurikulum": 3,
+      "nilai": "A-",
+      "HM": 3.75,
+      "SKS": 3,
+      "M": 11.25,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Sistem Operasi",
+      "kode": "INF124305",
+      "semester_kurikulum": 3,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 2,
+      "M": 8.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Praktikum Sistem Operasi",
+      "kode": "INF124306",
+      "semester_kurikulum": 3,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 1,
+      "M": 8.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Kompleksitas Algoritma",
+      "kode": "INF124307",
+      "semester_kurikulum": 3,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 3,
+      "M": 12.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Pemrograman Berorientasi Objek",
+      "kode": "INF124308",
+      "semester_kurikulum": 3,
+      "nilai": "B+",
+      "HM": 3.5,
+      "SKS": 2,
+      "M": 7.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Praktikum Pemrograman Berorientasi Objek",
+      "kode": "INF124309",
+      "semester_kurikulum": 3,
+      "nilai": "B+",
+      "HM": 3.5,
+      "SKS": 1,
+      "M": 7.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Interaksi Manusia dan Komputer",
+      "kode": "INF124310",
+      "semester_kurikulum": 3,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 3,
+      "M": 12.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Realitas Virtual dan Realitas Augmentasi (SE.1)",
+      "kode": "INF124312",
+      "semester_kurikulum": 3,
+      "nilai": "B+",
+      "HM": 3.5,
+      "SKS": 3,
+      "M": 10.5,
+      "keterangan": "Peminatan SE"
+    },
+    {
+      "nama": "Keamanan Data dan Jaringan",
+      "kode": "INF124401",
+      "semester_kurikulum": 4,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 2,
+      "M": 8.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Praktikum Keamanan Data dan Jaringan",
+      "kode": "INF124402",
+      "semester_kurikulum": 4,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 1,
+      "M": 8.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Rekayasa Perangkat Lunak",
+      "kode": "INF124403",
+      "semester_kurikulum": 4,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 3,
+      "M": 12.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Internet Of Thing",
+      "kode": "INF124404",
+      "semester_kurikulum": 4,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 2,
+      "M": 8.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Pratikum Internet Of Thing",
+      "kode": "INF124405",
+      "semester_kurikulum": 4,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 1,
+      "M": 8.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Kecerdasan Buatan",
+      "kode": "INF124406",
+      "semester_kurikulum": 4,
+      "nilai": "B+",
+      "HM": 3.5,
+      "SKS": 3,
+      "M": 10.5,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Pemrograman Berbasis Platform",
+      "kode": "INF124407",
+      "semester_kurikulum": 4,
+      "nilai": "A-",
+      "HM": 3.75,
+      "SKS": 2,
+      "M": 7.5,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Praktikum Pemrograman Berbasis Platform",
+      "kode": "INF124408",
+      "semester_kurikulum": 4,
+      "nilai": "A-",
+      "HM": 3.75,
+      "SKS": 1,
+      "M": 7.5,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Matematika Diskrit",
+      "kode": "INF124409",
+      "semester_kurikulum": 4,
+      "nilai": "A-",
+      "HM": 3.75,
+      "SKS": 3,
+      "M": 11.25,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Kriptografi (CE.2)",
+      "kode": "INF124411",
+      "semester_kurikulum": 4,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 3,
+      "M": 12.0,
+      "keterangan": "Peminatan CE"
+    },
+    {
+      "nama": "Pembangunan Perangkat Lunak Berorientasi Service (SE.2)",
+      "kode": "INF124412",
+      "semester_kurikulum": 4,
+      "nilai": "B+",
+      "HM": 3.5,
+      "SKS": 3,
+      "M": 10.5,
+      "keterangan": "Peminatan SE"
+    },
+    {
+      "nama": "Komputasi Jaringan (NE.2)",
+      "kode": "INF124413",
+      "semester_kurikulum": 4,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 3,
+      "M": 12.0,
+      "keterangan": "Peminatan NE"
+    },
+    {
+      "nama": "Analisis dan Desain Perangkat Lunak",
+      "kode": "INF124501",
+      "semester_kurikulum": 5,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 3,
+      "M": 12.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Komputasi Paralel dan Terdistribusi",
+      "kode": "INF124502",
+      "semester_kurikulum": 5,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 3,
+      "M": 12.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Teori Bahasa dan Automata",
+      "kode": "INF124503",
+      "semester_kurikulum": 5,
+      "nilai": "B+",
+      "HM": 3.5,
+      "SKS": 3,
+      "M": 10.5,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Bahasa Inggris",
+      "kode": "INF124504",
+      "semester_kurikulum": 5,
+      "nilai": "B+",
+      "HM": 3.5,
+      "SKS": 3,
+      "M": 10.5,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Pengembangan Aplikasi Permainan (SE.3)",
+      "kode": "INF124506",
+      "semester_kurikulum": 5,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 3,
+      "M": 12.0,
+      "keterangan": "Peminatan SE"
+    },
+    {
+      "nama": "MBKM Magang/Studi Independen",
+      "kode": "KMO124609",
+      "semester_kurikulum": 5,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 17,
+      "M": 68.0,
+      "keterangan": "MBKM"
+    },
+    {
+      "nama": "MBKM Magang/Praktik Kerja",
+      "kode": "KMO124605",
+      "semester_kurikulum": 5,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 17,
+      "M": 8.0,
+      "keterangan": "MBKM"
+    },
+    {
+      "nama": "Pembelajaran Mesin",
+      "kode": "SDT124307",
+      "semester_kurikulum": 5,
+      "nilai": "A-",
+      "HM": 3.75,
+      "SKS": 3,
+      "M": 11.25,
+      "keterangan": "PLPS"
+    },
+    {
+      "nama": "Kerja Praktik",
+      "kode": "INF124602",
+      "semester_kurikulum": 6,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 2,
+      "M": 8.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Disseminasi luaran",
+      "kode": "INF124603",
+      "semester_kurikulum": 6,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 1,
+      "M": 4.0,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Big Data",
+      "kode": "INF124612",
+      "semester_kurikulum": 6,
+      "nilai": "B+",
+      "HM": 3.5,
+      "SKS": 2,
+      "M": 7.0,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Pratikum Big Data",
+      "kode": "INF124613",
+      "semester_kurikulum": 6,
+      "nilai": "B+",
+      "HM": 3.5,
+      "SKS": 1,
+      "M": 7.0,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Temu Kembali Informasi",
+      "kode": "INF124620",
+      "semester_kurikulum": 6,
+      "nilai": "B+",
+      "HM": 3.5,
+      "SKS": 3,
+      "M": 10.5,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Data mining dan Data warehouse + Tutorial",
+      "kode": "INF124624",
+      "semester_kurikulum": 6,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 2,
+      "M": 8.0,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Pengolahan Citra Digital",
+      "kode": "INF124628",
+      "semester_kurikulum": 6,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 2,
+      "M": 8.0,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Praktikum Pengolahan Citra Digital",
+      "kode": "INF124629",
+      "semester_kurikulum": 6,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 1,
+      "M": 8.0,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Web Semantic",
+      "kode": "INF124640",
+      "semester_kurikulum": 6,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 3,
+      "M": 12.0,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Proposal",
+      "kode": "INF124701",
+      "semester_kurikulum": 7,
+      "nilai": "A-",
+      "HM": 3.75,
+      "SKS": 2,
+      "M": 7.5,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Pendidikan Bela Negara",
+      "kode": "MKW124704",
+      "semester_kurikulum": 7,
+      "nilai": "A-",
+      "HM": 3.75,
+      "SKS": 2,
+      "M": 7.5,
+      "keterangan": "MKWU"
+    },
+    {
+      "nama": "Kepemimpinan",
+      "kode": "MKW124705",
+      "semester_kurikulum": 7,
+      "nilai": "A-",
+      "HM": 3.75,
+      "SKS": 2,
+      "M": 7.5,
+      "keterangan": "MKWU"
+    },
+    {
+      "nama": "Filsafat Ilmu dan Logika",
+      "kode": "MKW124706",
+      "semester_kurikulum": 7,
+      "nilai": "A",
+      "HM": 4.0,
+      "SKS": 2,
+      "M": 8.0,
+      "keterangan": "MKWU"
+    },
+    {
+      "nama": "Kewarganegaraan",
+      "kode": "MKW124707",
+      "semester_kurikulum": 7,
+      "nilai": "A-",
+      "HM": 3.75,
+      "SKS": 2,
+      "M": 7.5,
+      "keterangan": "MKWU"
+    }
+  ],
+  "mk_belum_diambil": [
+    {
+      "nama": "Jaringan Komputer",
+      "kode": "INF124302",
+      "semester_kurikulum": 3,
+      "sks": 2,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Praktikum Jaringan Komputer",
+      "kode": "INF124303",
+      "semester_kurikulum": 3,
+      "sks": 1,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Keamanan Siber (CE.1)",
+      "kode": "INF124311",
+      "semester_kurikulum": 3,
+      "sks": 3,
+      "keterangan": "Peminatan CE"
+    },
+    {
+      "nama": "Komputasi Awan (NE.1)",
+      "kode": "INF124313",
+      "semester_kurikulum": 3,
+      "sks": 3,
+      "keterangan": "Peminatan NE"
+    },
+    {
+      "nama": "Technopreneuership",
+      "kode": "INF124410",
+      "semester_kurikulum": 4,
+      "sks": 2,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Hukum Teknologi Informasi",
+      "kode": "HKM124701",
+      "semester_kurikulum": 5,
+      "sks": 2,
+      "keterangan": "PLPS"
+    },
+    {
+      "nama": "Forensik Digital (CE.3)",
+      "kode": "INF124505",
+      "semester_kurikulum": 5,
+      "sks": 3,
+      "keterangan": "Peminatan CE"
+    },
+    {
+      "nama": "Wireless Network (NE.3)",
+      "kode": "INF124507",
+      "semester_kurikulum": 5,
+      "sks": 3,
+      "keterangan": "Peminatan NE"
+    },
+    {
+      "nama": "MBKM Studi/Proyek Independent",
+      "kode": "KMO124609",
+      "semester_kurikulum": 5,
+      "sks": 17,
+      "keterangan": "MBKM"
+    },
+    {
+      "nama": "MBKM Aktualisasi Bela Negera",
+      "kode": "KMO124611",
+      "semester_kurikulum": 5,
+      "sks": 17,
+      "keterangan": "MBKM"
+    },
+    {
+      "nama": "MBKM Asisten Mengajar",
+      "kode": "KMO124604",
+      "semester_kurikulum": 5,
+      "sks": 17,
+      "keterangan": "MBKM"
+    },
+    {
+      "nama": "MBKM Membangun Desa/KKN Tematik",
+      "kode": "KMO124610",
+      "semester_kurikulum": 5,
+      "sks": 17,
+      "keterangan": "MBKM"
+    },
+    {
+      "nama": "MBKM Penelitian/Riset",
+      "kode": "KMO124606",
+      "semester_kurikulum": 5,
+      "sks": 17,
+      "keterangan": "MBKM"
+    },
+    {
+      "nama": "MBKM Pertukaran Mahasiswa Merdeka",
+      "kode": "KMO124602",
+      "semester_kurikulum": 5,
+      "sks": 17,
+      "keterangan": "MBKM"
+    },
+    {
+      "nama": "MBKM Pertukaran Pelajaran lainnya",
+      "kode": "KMO124603",
+      "semester_kurikulum": 5,
+      "sks": 17,
+      "keterangan": "MBKM"
+    },
+    {
+      "nama": "MBKM Pertukaran Pelajar IISMA",
+      "kode": "KMO124601",
+      "semester_kurikulum": 5,
+      "sks": 17,
+      "keterangan": "MBKM"
+    },
+    {
+      "nama": "MBKM Proyek Kemanusiaan",
+      "kode": "KMO124607",
+      "semester_kurikulum": 5,
+      "sks": 17,
+      "keterangan": "MBKM"
+    },
+    {
+      "nama": "MBKM Wirausaha",
+      "kode": "KMO124608",
+      "semester_kurikulum": 5,
+      "sks": 17,
+      "keterangan": "MBKM"
+    },
+    {
+      "nama": "Manajemen Resiko",
+      "kode": "MNJ124305",
+      "semester_kurikulum": 5,
+      "sks": 3,
+      "keterangan": "PLPS"
+    },
+    {
+      "nama": "Cyber Politik dan Media Baru",
+      "kode": "POL124501",
+      "semester_kurikulum": 5,
+      "sks": 3,
+      "keterangan": "PLPS"
+    },
+    {
+      "nama": "Tata Kelolah TI",
+      "kode": "SIM124109",
+      "semester_kurikulum": 5,
+      "sks": 3,
+      "keterangan": "PLPS"
+    },
+    {
+      "nama": "Sistem Kendali",
+      "kode": "TKM120407",
+      "semester_kurikulum": 5,
+      "sks": 3,
+      "keterangan": "PLPS"
+    },
+    {
+      "nama": "Proyek Capstone",
+      "kode": "INF124601",
+      "semester_kurikulum": 6,
+      "sks": 2,
+      "keterangan": "MKPS"
+    },
+    {
+      "nama": "Software Quality Assurance",
+      "kode": "INF124610",
+      "semester_kurikulum": 6,
+      "sks": 3,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Informatika Sosial",
+      "kode": "INF124611",
+      "semester_kurikulum": 6,
+      "sks": 2,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Perangkat Sensor Jaringan tanpa kabel",
+      "kode": "INF124614",
+      "semester_kurikulum": 6,
+      "sks": 3,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Sistem Pakar",
+      "kode": "INF124615",
+      "semester_kurikulum": 6,
+      "sks": 3,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Visualisasi Data",
+      "kode": "INF124616",
+      "semester_kurikulum": 6,
+      "sks": 3,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Technology Blockchain",
+      "kode": "INF124617",
+      "semester_kurikulum": 6,
+      "sks": 3,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Ethical Hacking",
+      "kode": "INF124618",
+      "semester_kurikulum": 6,
+      "sks": 2,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Sistem Digital",
+      "kode": "INF124619",
+      "semester_kurikulum": 6,
+      "sks": 2,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Mobile Programming",
+      "kode": "INF124621",
+      "semester_kurikulum": 6,
+      "sks": 2,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Praktikum Mobile Programming",
+      "kode": "INF124622",
+      "semester_kurikulum": 6,
+      "sks": 1,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Embedded System",
+      "kode": "INF124623",
+      "semester_kurikulum": 6,
+      "sks": 2,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Pratikum Data Mining dan Data Warehouse",
+      "kode": "INF124625",
+      "semester_kurikulum": 6,
+      "sks": 1,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Deep Learning",
+      "kode": "INF124630",
+      "semester_kurikulum": 6,
+      "sks": 3,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Communication Skill",
+      "kode": "INF124631",
+      "semester_kurikulum": 6,
+      "sks": 1,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Problem Solving",
+      "kode": "INF124632",
+      "semester_kurikulum": 6,
+      "sks": 2,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Manajemen Organisasi",
+      "kode": "INF124633",
+      "semester_kurikulum": 6,
+      "sks": 3,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Inovasi dan Desain Thinking",
+      "kode": "INF124634",
+      "semester_kurikulum": 6,
+      "sks": 3,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Strategi Algoritma",
+      "kode": "INF124635",
+      "semester_kurikulum": 6,
+      "sks": 3,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Financial Technology",
+      "kode": "INF124636",
+      "semester_kurikulum": 6,
+      "sks": 3,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Analisis Jejaring Sosial",
+      "kode": "INF124637",
+      "semester_kurikulum": 6,
+      "sks": 3,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Sistem Media Interaktif",
+      "kode": "INF124638",
+      "semester_kurikulum": 6,
+      "sks": 3,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "AI Computing Platform",
+      "kode": "INF124639",
+      "semester_kurikulum": 6,
+      "sks": 3,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Robotika",
+      "kode": "INF124641",
+      "semester_kurikulum": 6,
+      "sks": 3,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Computer Vision",
+      "kode": "INF124642",
+      "semester_kurikulum": 6,
+      "sks": 3,
+      "keterangan": "Pilihan"
+    },
+    {
+      "nama": "Tugas Akhir",
+      "kode": "INF124801",
+      "semester_kurikulum": 8,
+      "sks": 4,
+      "keterangan": "MKPS"
+    }
+  ]
+}

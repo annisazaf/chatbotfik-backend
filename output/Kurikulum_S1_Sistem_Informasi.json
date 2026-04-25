@@ -1,0 +1,1014 @@
+{
+  "program_studi": "S1 Sistem Informasi",
+  "total_sks": 460,
+  "matakuliah": [
+    {
+      "no": 1,
+      "kode": "SIM124101",
+      "nama": "Pengantar Teknologi Informasi",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 2,
+      "kode": "SIM124102",
+      "nama": "Dasar Pemrograman",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 3,
+      "kode": "SIM124103",
+      "nama": "Praktikum Dasar Pemrograman",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 4,
+      "kode": "SIM124104",
+      "nama": "Pengantar Basis Data",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 5,
+      "kode": "SIM124105",
+      "nama": "Praktikum Pengantar Basis Data",
+      "sks": 1,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 6,
+      "kode": "SIM124106",
+      "nama": "Matematika Diskrit",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 7,
+      "kode": "SIM124107",
+      "nama": "Konsep Sistem Informasi",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 8,
+      "kode": "SIM124108",
+      "nama": "Bahasa Inggris",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 9,
+      "kode": "SIM124213",
+      "nama": "Tata Kelola TI",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 1
+    },
+    {
+      "no": 1,
+      "kode": "MKW124201",
+      "nama": "Pendidikan Agama",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKWU",
+      "semester": 2
+    },
+    {
+      "no": 2,
+      "kode": "MKW124202",
+      "nama": "Pancasila",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKWU",
+      "semester": 2
+    },
+    {
+      "no": 3,
+      "kode": "SIM124201",
+      "nama": "Sistem Basisdata",
+      "sks": 2,
+      "prasyarat": "Pengantar Basis Data",
+      "keterangan": "MKPS",
+      "semester": 2
+    },
+    {
+      "no": 4,
+      "kode": "SIM124202",
+      "nama": "Praktikum Sistem Basisdata",
+      "sks": 1,
+      "prasyarat": "Praktikum Pengantar Basis Data",
+      "keterangan": "MKPS",
+      "semester": 2
+    },
+    {
+      "no": 5,
+      "kode": "SIM124203",
+      "nama": "Statistika Dan Probabilitas",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 2
+    },
+    {
+      "no": 6,
+      "kode": "SIM124204",
+      "nama": "Struktur Data",
+      "sks": 2,
+      "prasyarat": "Dasar Pemrograman",
+      "keterangan": "MKPS",
+      "semester": 2
+    },
+    {
+      "no": 7,
+      "kode": "SIM124205",
+      "nama": "Praktikum Struktur Data",
+      "sks": 1,
+      "prasyarat": "Praktikum Dasar Pemrograman",
+      "keterangan": "MKPS",
+      "semester": 2
+    },
+    {
+      "no": 8,
+      "kode": "SIM124206",
+      "nama": "Analisis Dan Perancangan Sistem Informasi",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 2
+    },
+    {
+      "no": 9,
+      "kode": "SIM124207",
+      "nama": "Praktikum Analisis Dan Prancangan Sistem",
+      "sks": 1,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 2
+    },
+    {
+      "no": 10,
+      "kode": "SIM124208",
+      "nama": "Interaksi Manusia Dan Komputer",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 2
+    },
+    {
+      "no": 1,
+      "kode": "SDT124301",
+      "nama": "Pemrograman Web",
+      "sks": 2,
+      "prasyarat": "Dasar Pemrograman",
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 2,
+      "kode": "SDT124302",
+      "nama": "Praktikum Pemrograman Web",
+      "sks": 1,
+      "prasyarat": "Praktikum Dasar Pemrograman",
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 3,
+      "kode": "SDT124303",
+      "nama": "Audit Sistem Informasi",
+      "sks": 3,
+      "prasyarat": "Tata Kelola TI",
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 4,
+      "kode": "SDT124304",
+      "nama": "Sistem Informasi Manajemen",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 5,
+      "kode": "SDT124305",
+      "nama": "Jaringan Komputer",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 6,
+      "kode": "SDT124306",
+      "nama": "Etika Profesi Teknologi Informasi",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 7,
+      "kode": "SDT124307",
+      "nama": "Sistem Operasi",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 8,
+      "kode": "SDT124308",
+      "nama": "Praktikum Sistem Operasi",
+      "sks": 1,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 9,
+      "kode": "SIM124309",
+      "nama": "Transformasi Digital",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 3
+    },
+    {
+      "no": 10,
+      "kode": "SIM124310",
+      "nama": "Ui/Ux Design (Peminatan Ad.1)",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "Peminatan AD",
+      "semester": 3
+    },
+    {
+      "no": 11,
+      "kode": "SIM124311",
+      "nama": "Manajemen Risiko Sistem Informasi (Peminatan Au.1)",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "Peminatan AU",
+      "semester": 3
+    },
+    {
+      "no": 12,
+      "kode": "SIM124312",
+      "nama": "Supply Chain Management (Es.1)",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "Peminatan ES",
+      "semester": 3
+    },
+    {
+      "no": 1,
+      "kode": "MKW124404",
+      "nama": "Pendidikan Bela Negara",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKWU",
+      "semester": 4
+    },
+    {
+      "no": 2,
+      "kode": "SIM124401",
+      "nama": "Manajemen Proyek Sistem Informasi",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 4
+    },
+    {
+      "no": 3,
+      "kode": "SIM124402",
+      "nama": "Keamanan Jaringan",
+      "sks": 3,
+      "prasyarat": "Jaringan Komputer",
+      "keterangan": "MKPS",
+      "semester": 4
+    },
+    {
+      "no": 4,
+      "kode": "SIM124403",
+      "nama": "Metode Penelitian",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 4
+    },
+    {
+      "no": 5,
+      "kode": "SIM124404",
+      "nama": "Pemrograman Berorientasi Objek",
+      "sks": 2,
+      "prasyarat": "Dasar Pemrograman",
+      "keterangan": "MKPS",
+      "semester": 4
+    },
+    {
+      "no": 6,
+      "kode": "SIM124405",
+      "nama": "Praktikum Pemrograman Berorientasi Objek",
+      "sks": 1,
+      "prasyarat": "Praktikum Dasar Pemrograman",
+      "keterangan": "MKPS",
+      "semester": 4
+    },
+    {
+      "no": 7,
+      "kode": "SIM124406",
+      "nama": "Arsitektur Enterprise",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 4
+    },
+    {
+      "no": 8,
+      "kode": "SIM124407",
+      "nama": "Manajemen Layanan Ti (Peminatan Au.2)",
+      "sks": 3,
+      "prasyarat": "Manajemen Risiko Sistem Informasi (Peminatan Au.1)",
+      "keterangan": "Peminatan AU",
+      "semester": 4
+    },
+    {
+      "no": 9,
+      "kode": "SIM124408",
+      "nama": "Sistem ERP (Es.2)",
+      "sks": 3,
+      "prasyarat": "Supply Chain Management (Es.1)",
+      "keterangan": "Peminatan ES",
+      "semester": 4
+    },
+    {
+      "no": 10,
+      "kode": "SIM124409",
+      "nama": "Pemrograman Aplikasi Bergerak (Peminatan Ad.2)",
+      "sks": 2,
+      "prasyarat": "Ui/Ux Design (Peminatan Ad.1)",
+      "keterangan": "Peminatan AD",
+      "semester": 4
+    },
+    {
+      "no": 11,
+      "kode": "SIM124410",
+      "nama": "Praktikum Pemrograman Aplikasi Bergerak (Peminatan Ad.2)",
+      "sks": 1,
+      "prasyarat": "Ui/Ux Design (Peminatan Ad.1)",
+      "keterangan": "Peminatan AD",
+      "semester": 4
+    },
+    {
+      "no": 1,
+      "kode": "HKM124719",
+      "nama": "Hak Kekayaan Intelektual",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PLPS",
+      "semester": 5
+    },
+    {
+      "no": 2,
+      "kode": "INF124406",
+      "nama": "Kecerdasan Buatan",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PLPS",
+      "semester": 5
+    },
+    {
+      "no": 3,
+      "kode": "KOM124517",
+      "nama": "Communication Network and Big Data",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PLPS",
+      "semester": 5
+    },
+    {
+      "no": 5,
+      "kode": "MNJ124305",
+      "nama": "Manajemen Resiko",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PLPS",
+      "semester": 5
+    },
+    {
+      "no": 6,
+      "kode": "POL124501",
+      "nama": "Cyber Politik dan Media Baru",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PLPS",
+      "semester": 5
+    },
+    {
+      "no": 7,
+      "kode": "SIM124501",
+      "nama": "Technopreneurship",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 5
+    },
+    {
+      "no": 8,
+      "kode": "SIM124502",
+      "nama": "Sistem Pendukung Keputusan",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 5
+    },
+    {
+      "no": 9,
+      "kode": "SIM124503",
+      "nama": "Big Data",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 5
+    },
+    {
+      "no": 10,
+      "kode": "SIM124504",
+      "nama": "Praktikum Big Data",
+      "sks": 1,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 5
+    },
+    {
+      "no": 11,
+      "kode": "SIM124505",
+      "nama": "Computer Assisted Audit Tools (Peminatan Au.3)",
+      "sks": 3,
+      "prasyarat": "Manajemen Layanan Ti (Peminatan Au.2)",
+      "keterangan": "Peminatan AU",
+      "semester": 5
+    },
+    {
+      "no": 12,
+      "kode": "SIM124506",
+      "nama": "Customer Relationship Management (Es.3)",
+      "sks": 3,
+      "prasyarat": "Sistem ERP (Es.2)",
+      "keterangan": "Peminatan ES",
+      "semester": 5
+    },
+    {
+      "no": 13,
+      "kode": "SIM124507",
+      "nama": "Cloud Computing (Peminatan Ad.3)",
+      "sks": 3,
+      "prasyarat": "Pemrograman Aplikasi Bergerak (Peminatan Ad.2)",
+      "keterangan": "Peminatan AD",
+      "semester": 5
+    },
+    {
+      "no": 14,
+      "kode": "MBKM",
+      "nama": "MBKM Magang/Praktik Kerja",
+      "sks": 17,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 5
+    },
+    {
+      "no": 15,
+      "kode": "MBKM",
+      "nama": "MBKM Magang/Studi Independent",
+      "sks": 17,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 5
+    },
+    {
+      "no": 16,
+      "kode": "MBKM",
+      "nama": "MBKM Studi/Proyek Independent",
+      "sks": 17,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 5
+    },
+    {
+      "no": 17,
+      "kode": "MBKM",
+      "nama": "MBKM Aktualisasi Bela Negera",
+      "sks": 17,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 5
+    },
+    {
+      "no": 18,
+      "kode": "MBKM",
+      "nama": "MBKM Asisten Mengajar",
+      "sks": 17,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 5
+    },
+    {
+      "no": 19,
+      "kode": "MBKM",
+      "nama": "MBKM Membangun Desa/KKN Tematik",
+      "sks": 17,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 5
+    },
+    {
+      "no": 20,
+      "kode": "MBKM",
+      "nama": "MBKM Penelitian/Riset",
+      "sks": 17,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 5
+    },
+    {
+      "no": 21,
+      "kode": "MBKM",
+      "nama": "MBKM Pertukaran Mahasiswa Merdeka",
+      "sks": 17,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 5
+    },
+    {
+      "no": 22,
+      "kode": "MBKM",
+      "nama": "MBKM Pertukaran Pelajaran lainnya",
+      "sks": 17,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 5
+    },
+    {
+      "no": 23,
+      "kode": "MBKM",
+      "nama": "MBKM Pertukaran Pelajar IISMA",
+      "sks": 17,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 5
+    },
+    {
+      "no": 24,
+      "kode": "MBKM",
+      "nama": "MBKM Proyek Kemanusiaan",
+      "sks": 17,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 5
+    },
+    {
+      "no": 25,
+      "kode": "MBKM",
+      "nama": "MBKM Wirausaha",
+      "sks": 17,
+      "prasyarat": null,
+      "keterangan": "MBKM",
+      "semester": 5
+    },
+    {
+      "no": 1,
+      "kode": "MKU124603",
+      "nama": "Bahasa Indonesia",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKWU",
+      "semester": 6
+    },
+    {
+      "no": 2,
+      "kode": "MKU124605",
+      "nama": "Kepemimpinan",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKWU",
+      "semester": 6
+    },
+    {
+      "no": 3,
+      "kode": "MKU124606",
+      "nama": "Filsafat Ilmu Dan Logika",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKWU",
+      "semester": 6
+    },
+    {
+      "no": 4,
+      "kode": "MKU124607",
+      "nama": "Kewarganegaraan",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKWU",
+      "semester": 6
+    },
+    {
+      "no": 5,
+      "kode": "SIM124601",
+      "nama": "Kerja Praktik",
+      "sks": 2,
+      "prasyarat": "Analisis Dan Perancangan Sistem Informasi",
+      "keterangan": "MKPS",
+      "semester": 6
+    },
+    {
+      "no": 6,
+      "kode": "SIM124602",
+      "nama": "Diseminasi Kerja Praktik",
+      "sks": 1,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 6
+    },
+    {
+      "no": 7,
+      "kode": "SIM124603",
+      "nama": "Manajemen Proses Bisnis",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 6
+    },
+    {
+      "no": 8,
+      "kode": "SIM124604",
+      "nama": "Data Mining And Data Warehouse",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 6
+    },
+    {
+      "no": 9,
+      "kode": "SIM124605",
+      "nama": "Internet Of Thing (Iot)",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 6
+    },
+    {
+      "no": 10,
+      "kode": "SIM124606",
+      "nama": "Sistem Multimedia",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 6
+    },
+    {
+      "no": 11,
+      "kode": "SIM124607",
+      "nama": "Knowlegde Management",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 6
+    },
+    {
+      "no": 12,
+      "kode": "SIM124608",
+      "nama": "Sistem Rekomendasi",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 6
+    },
+    {
+      "no": 13,
+      "kode": "SIM124609",
+      "nama": "Startup Digital",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 6
+    },
+    {
+      "no": 14,
+      "kode": "SIM124610",
+      "nama": "Business Intelligence",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 6
+    },
+    {
+      "no": 15,
+      "kode": "SIM124611",
+      "nama": "Financial Technology",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 6
+    },
+    {
+      "no": 16,
+      "kode": "SIM124612",
+      "nama": "Blockchain",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 6
+    },
+    {
+      "no": 17,
+      "kode": "MBKM",
+      "nama": "MBKM Pertukaran Pelajar",
+      "sks": 7,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 6
+    },
+    {
+      "no": 1,
+      "kode": "SIM124701",
+      "nama": "Keamanan Sistem Informasi",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 7
+    },
+    {
+      "no": 2,
+      "kode": "SIM124702",
+      "nama": "Proyek Sistem Aplikasi (Capstone Project)",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 7
+    },
+    {
+      "no": 3,
+      "kode": "SIM124703",
+      "nama": "Software Testing Dan Quality Assurance",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 7
+    },
+    {
+      "no": 4,
+      "kode": "SIM124704",
+      "nama": "Computational Thinking",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "MKPS",
+      "semester": 7
+    },
+    {
+      "no": 5,
+      "kode": "SIM124705",
+      "nama": "Proposal",
+      "sks": 2,
+      "prasyarat": "Metode Penelitian",
+      "keterangan": "MKPS",
+      "semester": 7
+    },
+    {
+      "no": 6,
+      "kode": "SIM124706",
+      "nama": "Analitik Dan Visualisasi Data",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 7
+    },
+    {
+      "no": 7,
+      "kode": "SIM124707",
+      "nama": "Machine Learning",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 7
+    },
+    {
+      "no": 8,
+      "kode": "SIM124708",
+      "nama": "Komunikasi Dan Negosiasi",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 7
+    },
+    {
+      "no": 9,
+      "kode": "SIM124709",
+      "nama": "Communication Skill",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 7
+    },
+    {
+      "no": 10,
+      "kode": "SIM124710",
+      "nama": "Fundamental Erp",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 7
+    },
+    {
+      "no": 11,
+      "kode": "SIM124711",
+      "nama": "Human Resource Management",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 7
+    },
+    {
+      "no": 12,
+      "kode": "SIM124712",
+      "nama": "Teknologi Ar/Vr",
+      "sks": 2,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 7
+    },
+    {
+      "no": 13,
+      "kode": "SIM124713",
+      "nama": "Analisis Jejaring Sosial",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 7
+    },
+    {
+      "no": 14,
+      "kode": "SIM124714",
+      "nama": "Ai Computing Platform",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": "PILIHAN",
+      "semester": 7
+    },
+    {
+      "no": 15,
+      "kode": "SIM124715",
+      "nama": "Sistem Basis Data Terdistribusi",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": null,
+      "semester": 7
+    },
+    {
+      "no": 16,
+      "kode": "SIM124716",
+      "nama": "Sistem Basis Data Berorientasi Objek",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": null,
+      "semester": 7
+    },
+    {
+      "no": 17,
+      "kode": "SIM124717",
+      "nama": "Data Cleansing",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": null,
+      "semester": 7
+    },
+    {
+      "no": 18,
+      "kode": "SIM124718",
+      "nama": "Predictive Analytic",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": null,
+      "semester": 7
+    },
+    {
+      "no": 19,
+      "kode": "SIM124719",
+      "nama": "Sistem Informasi Geografis",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": null,
+      "semester": 7
+    },
+    {
+      "no": 20,
+      "kode": "SIM124720",
+      "nama": "Digital Design",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": null,
+      "semester": 7
+    },
+    {
+      "no": 21,
+      "kode": "SIM124721",
+      "nama": "Data Science",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": null,
+      "semester": 7
+    },
+    {
+      "no": 22,
+      "kode": "SIM124722",
+      "nama": "E-Business",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": null,
+      "semester": 7
+    },
+    {
+      "no": 23,
+      "kode": "SIM124723",
+      "nama": "Data Engineering",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": null,
+      "semester": 7
+    },
+    {
+      "no": 24,
+      "kode": "SIM124724",
+      "nama": "Kecerdasan Bisnis",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": null,
+      "semester": 7
+    },
+    {
+      "no": 25,
+      "kode": "SIM124725",
+      "nama": "Manajemen Data",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": null,
+      "semester": 7
+    },
+    {
+      "no": 26,
+      "kode": "SIM124726",
+      "nama": "Digital Forensik",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": null,
+      "semester": 7
+    },
+    {
+      "no": 27,
+      "kode": "SIM124727",
+      "nama": "Computer Ethical Hacking",
+      "sks": 3,
+      "prasyarat": null,
+      "keterangan": null,
+      "semester": 7
+    },
+    {
+      "no": 28,
+      "kode": "SIM124728",
+      "nama": "Kerja Tim",
+      "sks": 1,
+      "prasyarat": null,
+      "keterangan": null,
+      "semester": 7
+    },
+    {
+      "no": 1,
+      "kode": "SIM124801",
+      "nama": "Tugas Akhir",
+      "sks": 4,
+      "prasyarat": "Proposal",
+      "keterangan": "MKPS",
+      "semester": 8
+    }
+  ]
+}
