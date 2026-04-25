@@ -37,7 +37,10 @@ app.config['SESSION_COOKIE_HTTPONLY']        = True
 CORS(
     app,
     supports_credentials=True,
-    origins=["http://localhost:5173"],
+    origins=[
+        "http://localhost:5173",
+        "https://chatbotfik-frontend.vercel.app",  # ← tambah ini
+    ],
     allow_headers=["Content-Type"],
     methods=["GET", "POST", "DELETE", "OPTIONS", "PUT"],
 )
