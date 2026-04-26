@@ -14,13 +14,18 @@ app.config['SECRET_KEY']                     = os.getenv('SECRET_KEY', 'dev-secr
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SESSION_COOKIE_HTTPONLY']        = True
 app.config['SESSION_COOKIE_SAMESITE']        = 'None'
-app.config['SESSION_COOKIE_SECURE']          = True  # wajib kalau SameSite=None
+app.config['SESSION_COOKIE_SECURE']          = True
 
-# ← CORS sementara allow all untuk testing
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')
+
 CORS(
     app,
     supports_credentials=True,
-    origins="*",
+    origins=[
+        "http://localhost:5173",
+        "https://chatbotfik-frontend.vercel.app",
+        FRONTEND_URL,
+    ],
     allow_headers=["Content-Type"],
     methods=["GET", "POST", "DELETE", "OPTIONS", "PUT"],
 )
@@ -41,4 +46,10 @@ def index():
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=False)
+    app.run(
+        host='0.0.0.0',
+        port=port,
+        debug=True,
+        use_reloader=True,
+        reloader_type='stat'
+    )
