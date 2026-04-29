@@ -153,9 +153,12 @@ def tambah_mk():
 
     mk = MataKuliahKurikulum(
         prodi_id=data["prodi_id"],
+        kode=(data.get("kode") or "").strip(),
         nama=data["nama"],
-        sks=data["sks"],
-        semester=data["semester"],
+        sks=int(data["sks"]),
+        semester=int(data["semester"]),
+        keterangan=(data.get("keterangan") or "").strip() or None,
+        prasyarat=(data.get("prasyarat") or "").strip() or None,
     )
 
     db.session.add(mk)
