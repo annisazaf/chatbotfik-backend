@@ -19,56 +19,51 @@ class User(db.Model):
     role     = db.Column(db.String(10), nullable=False, server_default='mahasiswa')
 
 
-def get_secret():
+def _get_secret():
     return os.getenv('SECRET_KEY', 'dev-secret-key')
 
 
 def create_token(nim: str) -> str:
-    """Buat JWT token yang berlaku 7 hari."""
     payload = {
         'nim': nim,
         'exp': datetime.now(timezone.utc) + timedelta(days=7),
         'iat': datetime.now(timezone.utc),
     }
-    return jwt.encode(payload, get_secret(), algorithm='HS256')
+    return jwt.encode(payload, _get_secret(), algorithm='HS256')
+
+
+def get_nim_from_token() -> str | None:
+    """Ambil NIM dari Authorization: Bearer <token>. Return None jika tidak valid."""
+    auth_header = request.headers.get('Authorization', '')
+    if not auth_header.startswith('Bearer '):
+        return None
+    token = auth_header.split(' ', 1)[1]
+    try:
+        payload = jwt.decode(token, _get_secret(), algorithms=['HS256'])
+        return payload.get('nim')
+    except Exception:
+        return None
 
 
 def token_required(f):
-    """Decorator: cek JWT dari Authorization header."""
+    """Decorator: pastikan request punya JWT valid, inject user sebagai arg pertama."""
     @wraps(f)
     def decorated(*args, **kwargs):
-        token = None
-        auth_header = request.headers.get('Authorization', '')
-        if auth_header.startswith('Bearer '):
-            token = auth_header.split(' ', 1)[1]
-
-        if not token:
-            return jsonify({'error': 'Token tidak ditemukan'}), 401
-
-        try:
-            payload = jwt.decode(token, get_secret(), algorithms=['HS256'])
-            nim = payload.get('nim')
-        except jwt.ExpiredSignatureError:
-            return jsonify({'error': 'Token kadaluarsa, silakan login ulang'}), 401
-        except jwt.InvalidTokenError:
-            return jsonify({'error': 'Token tidak valid'}), 401
-
+        nim = get_nim_from_token()
+        if not nim:
+            return jsonify({'error': 'Token tidak ditemukan atau tidak valid'}), 401
         user = User.query.get(nim)
         if not user:
             return jsonify({'error': 'User tidak ditemukan'}), 404
-
         return f(user, *args, **kwargs)
     return decorated
 
 
-# ─────────────────────────────────────────────────────────────
-# REGISTER
-# ─────────────────────────────────────────────────────────────
+# ── REGISTER ──────────────────────────────────────────────────
 
 @auth_bp.route('/register', methods=['POST'])
 def register():
     data = request.get_json(silent=True)
-
     if not data:
         return jsonify({'error': 'Request body tidak valid'}), 400
 
@@ -98,14 +93,11 @@ def register():
         return jsonify({'error': 'Terjadi kesalahan server, coba lagi'}), 500
 
 
-# ─────────────────────────────────────────────────────────────
-# LOGIN — return JWT token
-# ─────────────────────────────────────────────────────────────
+# ── LOGIN ──────────────────────────────────────────────────────
 
 @auth_bp.route('/login', methods=['POST'])
 def login():
     data = request.get_json(silent=True)
-
     if not data:
         return jsonify({'error': 'Request body tidak valid'}), 400
 
@@ -113,7 +105,6 @@ def login():
         return jsonify({'error': 'NIM dan password wajib diisi'}), 400
 
     user = User.query.get(data['nim'].strip())
-
     if not user or not check_password_hash(user.password, data['password']):
         return jsonify({'error': 'NIM atau password salah'}), 401
 
@@ -125,9 +116,7 @@ def login():
     }), 200
 
 
-# ─────────────────────────────────────────────────────────────
-# ME — cek siapa yang login
-# ─────────────────────────────────────────────────────────────
+# ── ME ─────────────────────────────────────────────────────────
 
 @auth_bp.route('/me', methods=['GET'])
 @token_required
@@ -135,11 +124,8 @@ def get_me(user):
     return jsonify({'nim': user.nim, 'nama': user.nama, 'role': user.role}), 200
 
 
-# ─────────────────────────────────────────────────────────────
-# LOGOUT — client cukup hapus token di localStorage
-# ─────────────────────────────────────────────────────────────
+# ── LOGOUT ─────────────────────────────────────────────────────
 
 @auth_bp.route('/logout', methods=['POST'])
 def logout():
-    # JWT stateless: logout cukup hapus token di frontend
     return jsonify({'message': 'Logged out'}), 200
