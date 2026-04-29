@@ -120,6 +120,56 @@ def hapus_prodi(prodi_id):
 
     return jsonify({"message": "Prodi berhasil dihapus"}), 200
 
+# ─────────────────────────────────────────────
+# LIST USERS (UNTUK PANEL ADMIN)
+# ─────────────────────────────────────────────
+
+@admin_bp.route("/users", methods=["GET"])
+def list_users():
+    _, err = require_admin()
+    if err:
+        return err
+
+    users = User.query.order_by(User.nim).all()
+
+    return jsonify({
+        "total": len(users),
+        "users": [
+            {
+                "nim": u.nim,
+                "nama": u.nama,
+                "email": u.email,
+                "role": u.role,
+            }
+            for u in users
+        ],
+    }), 200
+
+# ─────────────────────────────────────────────
+# UBAH ROLE USER
+# ─────────────────────────────────────────────
+
+@admin_bp.route("/users/<string:nim>/role", methods=["PUT"])
+def update_user_role(nim):
+    _, err = require_admin()
+    if err:
+        return err
+
+    data = request.get_json()
+
+    user = User.query.get(nim)
+    if not user:
+        return jsonify({"error": "User tidak ditemukan"}), 404
+
+    new_role = data.get("role")
+
+    if new_role not in ["admin", "mahasiswa"]:
+        return jsonify({"error": "Role tidak valid"}), 400
+
+    user.role = new_role
+    db.session.commit()
+
+    return jsonify({"message": "Role berhasil diubah"}), 200
 
 # ─────────────────────────────────────────────
 # LIST MK
