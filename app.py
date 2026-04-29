@@ -9,12 +9,14 @@ from flask_migrate import Migrate
 app = Flask(__name__)
 migrate = Migrate(app, db)
 
+IS_PROD = os.getenv('FLASK_ENV') == 'production'
+
 app.config['SQLALCHEMY_DATABASE_URI']        = os.getenv('DATABASE_URL', 'sqlite:///project.db')
 app.config['SECRET_KEY']                     = os.getenv('SECRET_KEY', 'dev-secret-key')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SESSION_COOKIE_HTTPONLY']        = True
-app.config['SESSION_COOKIE_SAMESITE']        = 'None'
-app.config['SESSION_COOKIE_SECURE']          = True
+app.config['SESSION_COOKIE_SAMESITE']        = 'Lax' if IS_PROD else 'None'
+app.config['SESSION_COOKIE_SECURE']          = IS_PROD
 
 FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')
 
@@ -23,6 +25,8 @@ CORS(
     supports_credentials=True,
     origins=[
         "http://localhost:5173",
+        "http://192.168.1.5:5173",
+        "http://192.168.1.15:5173",
         "https://chatbotfik-frontend.vercel.app",
         FRONTEND_URL,
     ],
