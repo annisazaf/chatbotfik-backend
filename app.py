@@ -26,7 +26,7 @@ CORS(
     origins=[
         "http://localhost:5173",
         "https://chatbotfik-frontend.vercel.app",
-        "https://chatbotfik-frontend-annisazafs-projects.vercel.app"
+        "https://chatbotfik-frontend-annisazafs-projects.vercel.app",
         FRONTEND_URL,
     ],
     allow_headers=["Content-Type"],
