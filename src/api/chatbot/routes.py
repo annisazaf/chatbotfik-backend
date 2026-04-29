@@ -15,8 +15,8 @@ import uuid
 from datetime import datetime
 from pathlib import Path
 
-from flask import Blueprint, request, jsonify, session
-from src.api.auth.routes import db
+from flask import Blueprint, request, jsonify
+from src.api.auth.routes import db, token_required
 from src.models import KHSUpload, ChatSession, ChatMessage
 from src.chatbot import proses_khs, build_system_prompt, chat as ai_chat
 
@@ -33,8 +33,17 @@ MAX_HISTORY_IN_MEMORY = 20   # pesan terakhir yang dikirim ke LLM sebagai kontek
 # ─────────────────────────────────────────────
 
 def get_logged_in_nim():
-    """Return NIM user yang sedang login, atau None."""
-    return session.get('user_nim')
+    """Return NIM dari JWT token, atau None."""
+    import jwt, os
+    auth_header = request.headers.get('Authorization', '')
+    if not auth_header.startswith('Bearer '):
+        return None
+    token = auth_header.split(' ', 1)[1]
+    try:
+        payload = jwt.decode(token, os.getenv('SECRET_KEY', 'dev-secret-key'), algorithms=['HS256'])
+        return payload.get('nim')
+    except Exception:
+        return None
 
 
 def require_login():

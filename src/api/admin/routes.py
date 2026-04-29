@@ -16,7 +16,7 @@ Endpoints:
   POST   /api/admin/import-xlsx              → import kurikulum dari upload XLSX
 """
 
-from flask import Blueprint, request, jsonify, session
+from flask import Blueprint, request, jsonify
 from src.api.auth.routes import db, User
 from src.models import KurikulumProdi, MataKuliahKurikulum
 from src.chatbot import reload_kurikulum
@@ -28,9 +28,23 @@ admin_bp = Blueprint('admin', __name__)
 # HELPER: cek login admin
 # ─────────────────────────────────────────────
 
+def get_nim_from_token():
+    """Ambil NIM dari JWT Authorization header."""
+    import jwt, os
+    auth_header = request.headers.get('Authorization', '')
+    if not auth_header.startswith('Bearer '):
+        return None
+    token = auth_header.split(' ', 1)[1]
+    try:
+        payload = jwt.decode(token, os.getenv('SECRET_KEY', 'dev-secret-key'), algorithms=['HS256'])
+        return payload.get('nim')
+    except Exception:
+        return None
+
+
 def require_admin():
     """Return (user, None) jika admin, atau (None, response error)."""
-    nim = session.get('user_nim')
+    nim = get_nim_from_token()
     if not nim:
         return None, (jsonify({"error": "Unauthorized. Silakan login."}), 401)
 
