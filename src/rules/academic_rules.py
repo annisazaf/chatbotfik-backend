@@ -1,11 +1,4 @@
-"""
-Aturan Akademik per Prodi FIK UPN Veteran Jakarta
-Lokasi: src/rules/academic_rules.py
-"""
-
-# ─────────────────────────────────────────────
 # ATURAN SKS KELULUSAN & BEBAN PER SEMESTER
-# ─────────────────────────────────────────────
 
 ATURAN_PRODI = {
     "D3 Sistem Informasi": {
@@ -34,9 +27,7 @@ ATURAN_PRODI = {
     },
 }
 
-# ─────────────────────────────────────────────
 # KETERANGAN JENIS MATAKULIAH
-# ─────────────────────────────────────────────
 
 KETERANGAN_MK = {
     "MKWU": {
@@ -85,9 +76,7 @@ KETERANGAN_MK = {
     },
 }
 
-# ─────────────────────────────────────────────
 # ATURAN PEMINATAN PER PRODI
-# ─────────────────────────────────────────────
 
 PEMINATAN_PRODI = {
     "D3 Sistem Informasi": {
@@ -127,14 +116,12 @@ PEMINATAN_PRODI = {
     },
 }
 
-# ─────────────────────────────────────────────
 # ATURAN MBKM PER NIM
-# ─────────────────────────────────────────────
 
 def get_semester_mbkm(nim: str) -> int:
     """
     Tentukan semester MBKM berdasarkan digit terakhir NIM.
-    Ganjil → semester 5, Genap → semester 6.
+    Ganjil (semester 5), Genap (semester 6).
     """
     try:
         digit_terakhir = int(str(nim).strip()[-1])

@@ -1,12 +1,9 @@
 """
-Curriculum Loader
-Lokasi: src/curriculum/curriculum_loader.py
-
-Dua cara load kurikulum:
-1. load_all_kurikulum_from_db()  - BARU, baca dari PostgreSQL (production)
-2. load_kurikulum_from_db()      - BARU, baca satu prodi dari DB
-3. load_kurikulum()              - LAMA, baca dari XLSX (hanya seed_kurikulum.py)
-4. load_all_kurikulum()          - LAMA, baca semua XLSX (hanya seed_kurikulum.py)
+Cara load kurikulum:
+1. load_all_kurikulum_from_db()  - baca dari PostgreSQL (production)
+2. load_kurikulum_from_db()      - baca satu prodi dari DB
+3. load_kurikulum()              - baca dari XLSX (hanya seed_kurikulum.py)
+4. load_all_kurikulum()          - baca semua XLSX (hanya seed_kurikulum.py)
 """
 
 import re
@@ -17,9 +14,7 @@ from typing import Optional
 import openpyxl
 
 
-# ─────────────────────────────────────────────
 # DATA CLASSES
-# ─────────────────────────────────────────────
 
 @dataclass
 class MataKuliahKurikulum:
@@ -39,9 +34,7 @@ class Kurikulum:
     matakuliah: list = field(default_factory=list)
 
 
-# ─────────────────────────────────────────────
 # LOAD DARI DATABASE (production)
-# ─────────────────────────────────────────────
 
 def load_kurikulum_from_db(nama_prodi: str) -> Optional[Kurikulum]:
     """Baca kurikulum satu prodi dari PostgreSQL. Return None jika tidak ditemukan."""
@@ -90,9 +83,7 @@ def load_all_kurikulum_from_db() -> dict:
     return result
 
 
-# ─────────────────────────────────────────────
 # LOAD DARI XLSX (hanya untuk seed_kurikulum.py)
-# ─────────────────────────────────────────────
 
 FILE_TO_PRODI = {
     "KurikulumD3SistemInformasi.xlsx": "D3 Sistem Informasi",

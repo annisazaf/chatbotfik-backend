@@ -1,15 +1,6 @@
 """
-seed_kurikulum.py
-Lokasi: backend/seed_kurikulum.py
-
 Script sekali-pakai untuk migrasi data kurikulum dari file XLSX
 yang sudah ada ke tabel database (kurikulum_prodi + mata_kuliah_kurikulum).
-
-Cara pakai:
-    cd backend
-    python seed_kurikulum.py
-
-Jalankan SETELAH flask db upgrade selesai.
 """
 
 import sys

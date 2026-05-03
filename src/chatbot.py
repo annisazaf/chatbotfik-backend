@@ -1,8 +1,3 @@
-"""
-Chatbot KHS dengan DeepSeek API
-Lokasi: src/chatbot.py
-"""
-
 import os
 from pathlib import Path
 from dataclasses import asdict
@@ -15,21 +10,17 @@ from src.analysis.progress_analyzer import analyze_progress
 
 load_dotenv()
 
-# ─────────────────────────────────────────────
 # SETUP CLIENT
-# ─────────────────────────────────────────────
 
 client = OpenAI(
     api_key=os.getenv("DEEPSEEK_API_KEY"),
     base_url="https://api.deepseek.com"
 )
 
-# ─────────────────────────────────────────────
 # LOAD KURIKULUM SEKALI SAAT STARTUP
-# ─────────────────────────────────────────────
 
 BASE_DIR        = Path(__file__).parent.parent
-# Kurikulum dimuat dari DB saat pertama kali dibutuhkan (lazy load per request)
+# Kurikulum dimuat dari DB saat pertama kali dibutuhkan
 # agar tidak crash saat startup sebelum DB siap
 _SEMUA_KURIKULUM = None
 
@@ -49,9 +40,7 @@ def reload_kurikulum():
     return _SEMUA_KURIKULUM
 
 
-# ─────────────────────────────────────────────
 # PROSES PDF KHS
-# ─────────────────────────────────────────────
 
 def proses_khs(pdf_path: str) -> dict:
     """Baca PDF KHS, analisis, kembalikan dict hasil analisis."""
@@ -66,9 +55,7 @@ def proses_khs(pdf_path: str) -> dict:
     return asdict(hasil)
 
 
-# ─────────────────────────────────────────────
 # BUILD SYSTEM PROMPT
-# ─────────────────────────────────────────────
 
 def build_system_prompt(hasil: dict) -> str:
     persen    = (hasil['sks_sudah_tempuh'] / hasil['total_sks_kurikulum'] * 100) \
@@ -122,7 +109,7 @@ Progress            : {persen:.1f}%
 
 === SYARAT SIDANG ===
 Minimal SKS Sidang  : {hasil['syarat_sidang_sks']} SKS
-Status              : {"✅ Memenuhi syarat SKS sidang" if bisa_sid else f"❌ Belum memenuhi, kurang {kurang_sid} SKS"}
+Status              : {"Memenuhi syarat SKS sidang" if bisa_sid else f"Belum memenuhi, kurang {kurang_sid} SKS"}
 
 === MATAKULIAH ===
 MK Lulus : {hasil['jumlah_mk_lulus']} mata kuliah
@@ -152,9 +139,7 @@ Gunakan semua data di atas untuk menjawab pertanyaan mahasiswa secara akurat.
     return prompt
 
 
-# ─────────────────────────────────────────────
 # CHAT DENGAN DEEPSEEK
-# ─────────────────────────────────────────────
 
 def chat(pesan: str, history: list, system_prompt: str, max_tokens: int = 1024) -> str:
     messages = [{"role": "system", "content": system_prompt}]

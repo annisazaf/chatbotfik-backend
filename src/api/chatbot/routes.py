@@ -1,14 +1,11 @@
 """
-Chatbot Routes - ChatbotFIK
-Lokasi: src/api/chatbot/routes.py
-
 Endpoints:
-  POST   /api/chatbot/upload          → Upload PDF KHS, init sesi chat
-  POST   /api/chatbot/chat            → Kirim pesan, dapat balasan AI
-  GET    /api/chatbot/sessions        → List semua sesi chat milik user
-  GET    /api/chatbot/sessions/<id>   → Detail sesi + full history pesan
-  DELETE /api/chatbot/sessions/<id>   → Hapus sesi chat
-  GET    /api/chatbot/sessions/<id>/khs → Data KHS dari sesi tertentu
+  POST   /api/chatbot/upload = Upload PDF KHS, init sesi chat
+  POST   /api/chatbot/chat = Kirim pesan, dapat balasan AI
+  GET    /api/chatbot/sessions = List semua sesi chat milik user
+  GET    /api/chatbot/sessions/<id> = Detail sesi + full history pesan
+  DELETE /api/chatbot/sessions/<id> = Hapus sesi chat
+  GET    /api/chatbot/sessions/<id>/khs = Data KHS dari sesi tertentu
 """
 
 import uuid
@@ -28,9 +25,7 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 MAX_HISTORY_IN_MEMORY = 20   # pesan terakhir yang dikirim ke LLM sebagai konteks
 
 
-# ─────────────────────────────────────────────
 # HELPER
-# ─────────────────────────────────────────────
 
 def get_logged_in_nim():
     """Return NIM dari JWT token, atau None."""
@@ -68,9 +63,7 @@ def derive_session_title(pesan: str) -> str:
     return pesan[:60] + ("..." if len(pesan) > 60 else "")
 
 
-# ─────────────────────────────────────────────
-# UPLOAD KHS → BUAT SESI CHAT BARU
-# ─────────────────────────────────────────────
+# UPLOAD KHS - BUAT SESI CHAT BARU
 
 @chatbot_bp.route("/upload", methods=["POST"])
 def upload_khs():
@@ -157,9 +150,7 @@ def upload_khs():
             pdf_path.unlink()
 
 
-# ─────────────────────────────────────────────
 # CHAT — KIRIM PESAN & DAPAT BALASAN
-# ─────────────────────────────────────────────
 
 @chatbot_bp.route("/chat", methods=["POST"])
 def chat_endpoint():
@@ -232,9 +223,7 @@ def chat_endpoint():
         return jsonify({"error": f"Gagal mendapatkan respons AI: {str(e)}"}), 500
 
 
-# ─────────────────────────────────────────────
 # LIST SEMUA SESI CHAT MILIK USER
-# ─────────────────────────────────────────────
 
 @chatbot_bp.route("/sessions", methods=["GET"])
 def list_sessions():
@@ -259,9 +248,7 @@ def list_sessions():
     }), 200
 
 
-# ─────────────────────────────────────────────
 # DETAIL SESI + FULL HISTORY PESAN
-# ─────────────────────────────────────────────
 
 @chatbot_bp.route("/sessions/<session_id>", methods=["GET"])
 def get_session(session_id):
@@ -280,9 +267,7 @@ def get_session(session_id):
     return jsonify(chat_session.to_dict(include_messages=True)), 200
 
 
-# ─────────────────────────────────────────────
 # DATA KHS DARI SESI TERTENTU
-# ─────────────────────────────────────────────
 
 @chatbot_bp.route("/sessions/<session_id>/khs", methods=["GET"])
 def get_session_khs(session_id):
@@ -322,15 +307,13 @@ def get_session_khs(session_id):
     }), 200
 
 
-# ─────────────────────────────────────────────
 # HAPUS SESI CHAT
-# ─────────────────────────────────────────────
 
 @chatbot_bp.route("/sessions/<session_id>", methods=["DELETE"])
 def delete_session(session_id):
     """
     Hapus sesi chat beserta semua pesannya (cascade).
-    KHSUpload TIDAK ikut dihapus.
+    KHSUpload tidak ikut dihapus.
     """
     nim, err = require_login()
     if err:
@@ -349,17 +332,7 @@ def delete_session(session_id):
         return jsonify({"error": f"Gagal menghapus sesi: {str(e)}"}), 500
 
 
-"""
-Tambahan endpoint di src/api/chatbot/routes.py
-Tambahkan routes ini ke file routes.py yang sudah ada.
-
-Endpoints baru:
-  GET  /api/chatbot/sessions/<id>/rekomendasi  → rekomendasi MK + karier dari AI
-"""
-
-# ─────────────────────────────────────────────
 # REKOMENDASI MATA KULIAH & KARIER
-# ─────────────────────────────────────────────
 
 @chatbot_bp.route("/sessions/<session_id>/rekomendasi", methods=["GET"])
 def get_rekomendasi(session_id):
@@ -419,7 +392,7 @@ Berikan response dalam format JSON berikut (HANYA JSON, tanpa teks lain):
 
     except Exception as e:
         import traceback
-        traceback.print_exc()  # ← ini print full error ke terminal
+        traceback.print_exc()  # ini print full error ke terminal
         return jsonify({"error": f"Gagal generate rekomendasi: {str(e)}"}), 500
 
 

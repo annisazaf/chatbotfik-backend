@@ -1,8 +1,3 @@
-"""
-Progress Analyzer — dengan aturan akademik per prodi
-Lokasi: src/analysis/progress_analyzer.py
-"""
-
 import re
 from dataclasses import dataclass, field, asdict
 from typing import Optional
@@ -15,10 +10,7 @@ from src.rules.academic_rules import (
     ATURAN_PRODI, KETERANGAN_MK, PEMINATAN_PRODI, get_semester_mbkm
 )
 
-
-# ─────────────────────────────────────────────
 # DATA CLASSES
-# ─────────────────────────────────────────────
 
 @dataclass
 class MKSudahLulus:
@@ -43,10 +35,10 @@ class MKBelumDiambil:
 
 @dataclass
 class InfoPeminatan:
-    jalur_kode: str            # CE, NE, SE, AU, AD, ES, DE, DA
+    jalur_kode: str #CE, NE, SE, AU, AD, ES, DE, DA
     jalur_nama: str
     jumlah_mk: int
-    sudah_cukup: bool          # >= min_mk_per_jalur
+    sudah_cukup: bool #>= min_mk_per_jalur
     min_required: int
 
 
@@ -61,8 +53,8 @@ class HasilAnalisis:
 
     # SKS
     sks_kumulatif: int
-    total_sks_kurikulum: int   # dari XLSX
-    sks_wajib_lulus: int       # dari aturan prodi (108 / 144)
+    total_sks_kurikulum: int
+    sks_wajib_lulus: int #dari aturan prodi
     sks_sudah_tempuh: int
     sks_belum_tempuh: int
 
@@ -86,9 +78,7 @@ class HasilAnalisis:
     mk_belum_diambil: list = field(default_factory=list)
 
 
-# ─────────────────────────────────────────────
 # NORMALISASI & PENCOCOKAN NAMA
-# ─────────────────────────────────────────────
 
 def normalize_nama(nama: str) -> str:
     nama = nama.lower().strip()
@@ -117,9 +107,7 @@ def is_match(nama_khs: str, nama_kurikulum: str) -> bool:
     return False
 
 
-# ─────────────────────────────────────────────
 # ANALISIS PEMINATAN
-# ─────────────────────────────────────────────
 
 def analisis_peminatan(mk_lulus: list, prodi: str) -> tuple:
     """
@@ -130,7 +118,7 @@ def analisis_peminatan(mk_lulus: list, prodi: str) -> tuple:
     if not aturan or not aturan["harus_konsisten"]:
         return [], True, "Tidak ada aturan peminatan khusus untuk prodi ini."
 
-    jalur_map  = aturan["jalur"]       # {"CE": "Cybersecurity", ...}
+    jalur_map  = aturan["jalur"]
     min_mk     = aturan["min_mk_per_jalur"]
 
     # Hitung MK peminatan yang sudah lulus per jalur
@@ -163,14 +151,14 @@ def analisis_peminatan(mk_lulus: list, prodi: str) -> tuple:
     if not jalur_diambil:
         pesan = f"Belum mengambil mata kuliah peminatan apapun."
     elif not konsisten:
-        pesan = (f"⚠️ Mengambil MK dari {len(jalur_diambil)} jalur peminatan berbeda "
+        pesan = (f"Mengambil MK dari {len(jalur_diambil)} jalur peminatan berbeda "
                  f"({', '.join(jalur_diambil)}). Seharusnya hanya 1 jalur.")
     else:
         kode_aktif = jalur_diambil[0]
         jml_aktif  = counter[kode_aktif]
         nama_aktif = jalur_map[kode_aktif]
         if jml_aktif >= min_mk:
-            pesan = (f"✅ Peminatan {nama_aktif} ({kode_aktif}): "
+            pesan = (f"Peminatan {nama_aktif} ({kode_aktif}): "
                      f"{jml_aktif} MK sudah diambil (syarat minimal {min_mk} MK).")
         else:
             kurang = min_mk - jml_aktif
@@ -180,9 +168,7 @@ def analisis_peminatan(mk_lulus: list, prodi: str) -> tuple:
     return info_list, konsisten, pesan
 
 
-# ─────────────────────────────────────────────
 # MAIN ANALYZER
-# ─────────────────────────────────────────────
 
 def analyze_progress(khs: KHSData, kurikulum: Kurikulum) -> HasilAnalisis:
     aturan        = ATURAN_PRODI.get(khs.program_studi, {})
@@ -227,8 +213,10 @@ def analyze_progress(khs: KHSData, kurikulum: Kurikulum) -> HasilAnalisis:
                 keterangan         = mk_kur.keterangan,
             ))
 
-    sks_belum = kurikulum.total_sks - sks_tempuh
-    bisa_sidang = sks_tempuh >= syarat_sidang
+    sks_resmi = khs.sks_kumulatif if khs.sks_kumulatif else sks_tempuh
+
+    sks_belum = max(sks_wajib - sks_resmi, 0)
+    bisa_sidang = sks_resmi >= syarat_sidang
 
     # Analisis peminatan
     mk_lulus_dict = [asdict(m) for m in mk_lulus]
@@ -242,10 +230,10 @@ def analyze_progress(khs: KHSData, kurikulum: Kurikulum) -> HasilAnalisis:
         program_studi        = khs.program_studi,
         ipk                  = khs.ipk,
         ips                  = khs.ips,
-        sks_kumulatif        = khs.sks_kumulatif,
+        sks_kumulatif        = sks_resmi,
         total_sks_kurikulum  = kurikulum.total_sks,
         sks_wajib_lulus      = sks_wajib,
-        sks_sudah_tempuh     = sks_tempuh,
+        sks_sudah_tempuh     = sks_resmi,
         sks_belum_tempuh     = sks_belum,
         jumlah_mk_lulus      = len(mk_lulus),
         jumlah_mk_belum      = len(mk_belum),

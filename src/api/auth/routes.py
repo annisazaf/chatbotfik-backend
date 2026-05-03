@@ -74,7 +74,7 @@ def token_required(f):
     return decorated
 
 
-# ── REGISTER ──────────────────────────────────────────────────
+# REGISTER
 
 @auth_bp.route("/register", methods=["POST"])
 def register():
@@ -119,7 +119,7 @@ def register():
         return jsonify({"error": "Terjadi kesalahan server, coba lagi"}), 500
 
 
-# ── LOGIN ──────────────────────────────────────────────────────
+# LOGIN
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
@@ -157,7 +157,7 @@ def login():
     }), 200
 
 
-# ── ME ─────────────────────────────────────────────────────────
+# ME
 
 @auth_bp.route("/me", methods=["GET"])
 @token_required
@@ -170,7 +170,7 @@ def get_me(user):
     }), 200
 
 
-# ── LOGOUT ─────────────────────────────────────────────────────
+# LOGOUT
 
 @auth_bp.route("/logout", methods=["POST"])
 def logout():

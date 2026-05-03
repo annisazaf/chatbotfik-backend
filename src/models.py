@@ -1,14 +1,7 @@
-"""
-Models - ChatbotFIK
-Lokasi: src/models.py
-"""
-
 from datetime import datetime
 from src.api.auth.routes import db
 
-# ─────────────────────────────────────────────
 # MODEL KURIKULUM PRODI
-# ─────────────────────────────────────────────
 
 class KurikulumProdi(db.Model):
     """
@@ -59,9 +52,7 @@ class KurikulumProdi(db.Model):
         return data
 
 
-# ─────────────────────────────────────────────
 # MODEL MATA KULIAH KURIKULUM
-# ─────────────────────────────────────────────
 
 class MataKuliahKurikulum(db.Model):
     """
@@ -99,9 +90,7 @@ class MataKuliahKurikulum(db.Model):
         }
 
 
-# ─────────────────────────────────────────────
 # MODEL KHS UPLOAD
-# ─────────────────────────────────────────────
 
 class KHSUpload(db.Model):
     __tablename__ = 'khs_uploads'
@@ -124,9 +113,7 @@ class KHSUpload(db.Model):
         }
 
 
-# ─────────────────────────────────────────────
 # MODEL CHAT SESSION
-# ─────────────────────────────────────────────
 
 class ChatSession(db.Model):
     __tablename__ = 'chat_sessions'
@@ -163,9 +150,7 @@ class ChatSession(db.Model):
         return data
 
 
-# ─────────────────────────────────────────────
 # MODEL CHAT MESSAGE
-# ─────────────────────────────────────────────
 
 class ChatMessage(db.Model):
     __tablename__ = 'chat_messages'

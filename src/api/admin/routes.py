@@ -6,9 +6,7 @@ from src.chatbot import reload_kurikulum
 admin_bp = Blueprint('admin', __name__)
 
 
-# ─────────────────────────────────────────────
-# HELPER: cek login admin (FIXED)
-# ─────────────────────────────────────────────
+# CEK LOGIN ADMIN
 
 def require_admin():
     """Cek admin dari session atau JWT."""
@@ -25,9 +23,7 @@ def require_admin():
     return user, None
 
 
-# ─────────────────────────────────────────────
 # CEK STATUS ADMIN
-# ─────────────────────────────────────────────
 
 @admin_bp.route("/check", methods=["GET"])
 def check_admin():
@@ -37,9 +33,7 @@ def check_admin():
     return jsonify({"is_admin": True, "nim": user.nim, "nama": user.nama}), 200
 
 
-# ─────────────────────────────────────────────
 # CRUD PRODI
-# ─────────────────────────────────────────────
 
 @admin_bp.route("/prodi", methods=["GET"])
 def list_prodi():
@@ -120,9 +114,7 @@ def hapus_prodi(prodi_id):
 
     return jsonify({"message": "Prodi berhasil dihapus"}), 200
 
-# ─────────────────────────────────────────────
 # LIST USERS (UNTUK PANEL ADMIN)
-# ─────────────────────────────────────────────
 
 @admin_bp.route("/users", methods=["GET"])
 def list_users():
@@ -145,9 +137,7 @@ def list_users():
         ],
     }), 200
 
-# ─────────────────────────────────────────────
 # UBAH ROLE USER
-# ─────────────────────────────────────────────
 
 @admin_bp.route("/users/<string:nim>/role", methods=["PUT"])
 def update_user_role(nim):
@@ -171,9 +161,7 @@ def update_user_role(nim):
 
     return jsonify({"message": "Role berhasil diubah"}), 200
 
-# ─────────────────────────────────────────────
 # LIST MK
-# ─────────────────────────────────────────────
 
 @admin_bp.route("/prodi/<int:prodi_id>/mk", methods=["GET"])
 def list_mk(prodi_id):
@@ -189,9 +177,7 @@ def list_mk(prodi_id):
     }), 200
 
 
-# ─────────────────────────────────────────────
 # CRUD MK
-# ─────────────────────────────────────────────
 
 @admin_bp.route("/mk", methods=["POST"])
 def tambah_mk():

@@ -7,9 +7,7 @@ from typing import Optional
 import pdfplumber
 
 
-# ─────────────────────────────────────────────
 # DATA CLASSES
-# ─────────────────────────────────────────────
 
 @dataclass
 class MataKuliah:
@@ -34,15 +32,13 @@ class KHSData:
     source_file: str = ""
 
 
-# ─────────────────────────────────────────────
 # NORMALISASI PRODI
-# ─────────────────────────────────────────────
 
 PRODI_ALIASES = {
-    "sistem informasi d-iii": "D3 Sistem Informasi",
-    "sistem informasi s.1":   "S1 Sistem Informasi",
-    "sains data s.1":         "S1 Sains Data",
-    "informatika s.1":        "S1 Informatika",
+    "sistem informasi d-iii":"D3 Sistem Informasi",
+    "sistem informasi s.1":"S1 Sistem Informasi",
+    "sains data s.1":"S1 Sains Data",
+    "informatika s.1":"S1 Informatika",
 }
 
 
@@ -68,9 +64,7 @@ def parse_int(val) -> Optional[int]:
         return None
 
 
-# ─────────────────────────────────────────────
 # EKSTRAK HEADER
-# ─────────────────────────────────────────────
 
 def extract_header_info(text: str) -> dict:
     info = {}
@@ -110,9 +104,7 @@ def extract_header_info(text: str) -> dict:
     return info
 
 
-# ─────────────────────────────────────────────
 # PARSE BARIS MATAKULIAH
-# ─────────────────────────────────────────────
 
 def detect_semester_label(line: str) -> bool:
     """Deteksi baris label semester agar dilewati."""
@@ -123,14 +115,14 @@ def detect_semester_label(line: str) -> bool:
 
 
 MK_PATTERN = re.compile(
-    r"^\s*(\d{1,3})"                        # nomor
-    r"(?:\s+\[[\s]*\])?"                     # opsional [ ] atau []
-    r"\s+(.+?)"                              # nama matakuliah
-    r"(?:\s+(A[+-]?|B[+-]?|C[+-]?|D|E))?"  # opsional grade huruf
-    r"\s+(\d+[.,]\d{2})"                    # grade angka (HM)
-    r"\s+(\d{1,2})"                          # SKS
-    r"\s+(\d+[.,]\d{2})"                    # mutu (M)
-    r"(?:\s+\*)?\s*$"                        # opsional *
+    r"^\s*(\d{1,3})" # nomor
+    r"(?:\s+\[[\s]*\])?" # opsional [ ] atau []
+    r"\s+(.+?)" # nama matakuliah
+    r"(?:\s+(A[+-]?|B[+-]?|C[+-]?|D|E))?" # opsional grade huruf
+    r"\s+(\d+[.,]\d{2})" # grade angka (HM)
+    r"\s+(\d{1,2})" # SKS
+    r"\s+(\d+[.,]\d{2})" # mutu (M)
+    r"(?:\s+\*)?\s*$" # opsional *
 )
 
 
@@ -154,7 +146,7 @@ def parse_single_line(line: str) -> Optional[MataKuliah]:
     sks     = parse_int(m.group(5)) or 0
     mutu    = parse_float(m.group(6))
 
-    # ── FILTER UTAMA: lewati matakuliah yang belum diambil ──
+    # FILTER UTAMA: lewati matakuliah yang belum diambil
     if not grade_a or grade_a == 0.0:
         return None
 
@@ -167,9 +159,7 @@ def parse_single_line(line: str) -> Optional[MataKuliah]:
     )
 
 
-# ─────────────────────────────────────────────
 # CROP 2 KOLOM
-# ─────────────────────────────────────────────
 
 def extract_lines_from_page(page) -> list:
     """
@@ -185,9 +175,7 @@ def extract_lines_from_page(page) -> list:
     return left_text.splitlines() + right_text.splitlines()
 
 
-# ─────────────────────────────────────────────
 # MAIN EXTRACTOR
-# ─────────────────────────────────────────────
 
 def extract_khs_from_pdf(pdf_path) -> KHSData:
     pdf_path = Path(pdf_path)
