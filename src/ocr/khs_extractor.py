@@ -7,15 +7,13 @@ from typing import Optional
 import pdfplumber
 
 
-# DATA CLASSES
-
 @dataclass
 class MataKuliah:
     nama: str
-    nilai: Optional[str]   # Grade huruf: A, A-, B+, dst.
-    HM: Optional[float]    # Grade angka: 4.00, 3.75, dst.
+    nilai: Optional[str]
+    HM: Optional[float]
     SKS: int
-    M: Optional[float]     # Mutu: HM x SKS
+    M: Optional[float]
 
 
 @dataclass
@@ -32,8 +30,7 @@ class KHSData:
     source_file: str = ""
 
 
-# NORMALISASI PRODI
-
+# Normalisasi prodi
 PRODI_ALIASES = {
     "sistem informasi d-iii":"D3 Sistem Informasi",
     "sistem informasi s.1":"S1 Sistem Informasi",
@@ -64,8 +61,7 @@ def parse_int(val) -> Optional[int]:
         return None
 
 
-# EKSTRAK HEADER
-
+# Ekstrak header
 def extract_header_info(text: str) -> dict:
     info = {}
 
@@ -104,8 +100,7 @@ def extract_header_info(text: str) -> dict:
     return info
 
 
-# PARSE BARIS MATAKULIAH
-
+# Parse baris matkul
 def detect_semester_label(line: str) -> bool:
     """Deteksi baris label semester agar dilewati."""
     return bool(re.match(
@@ -127,10 +122,7 @@ MK_PATTERN = re.compile(
 
 
 def parse_single_line(line: str) -> Optional[MataKuliah]:
-    """
-    Parse satu baris matakuliah.
-    Hanya kembalikan data jika HM > 0 (sudah diambil mahasiswa).
-    """
+    """Hanya kembalikan data jika HM > 0 (sudah diambil mahasiswa)"""
     line = line.strip()
     if not line:
         return None
@@ -146,7 +138,7 @@ def parse_single_line(line: str) -> Optional[MataKuliah]:
     sks     = parse_int(m.group(5)) or 0
     mutu    = parse_float(m.group(6))
 
-    # FILTER UTAMA: lewati matakuliah yang belum diambil
+    # Filter lewati matakuliah yang belum diambil
     if not grade_a or grade_a == 0.0:
         return None
 
@@ -159,13 +151,9 @@ def parse_single_line(line: str) -> Optional[MataKuliah]:
     )
 
 
-# CROP 2 KOLOM
-
+# Crop halaman kiri dan kanan
 def extract_lines_from_page(page) -> list:
-    """
-    Crop halaman menjadi kolom kiri dan kanan (PDF 2 kolom),
-    lalu kembalikan semua baris secara berurutan.
-    """
+   
     width  = page.width
     height = page.height
 
@@ -175,8 +163,7 @@ def extract_lines_from_page(page) -> list:
     return left_text.splitlines() + right_text.splitlines()
 
 
-# MAIN EXTRACTOR
-
+# Main
 def extract_khs_from_pdf(pdf_path) -> KHSData:
     pdf_path = Path(pdf_path)
     if not pdf_path.exists():
@@ -193,15 +180,15 @@ def extract_khs_from_pdf(pdf_path) -> KHSData:
     header = extract_header_info(full_text)
 
     khs = KHSData(
-        nama_mahasiswa    = header.get("nama_mahasiswa", "UNKNOWN"),
-        nim               = header.get("nim", "UNKNOWN"),
-        program_studi     = header.get("program_studi", "UNKNOWN"),
-        ipk               = header.get("ipk", 0.0),
-        ips               = header.get("ips", 0.0),
-        sks_kumulatif     = header.get("sks_kumulatif", 0),
+        nama_mahasiswa = header.get("nama_mahasiswa", "UNKNOWN"),
+        nim = header.get("nim", "UNKNOWN"),
+        program_studi = header.get("program_studi", "UNKNOWN"),
+        ipk = header.get("ipk", 0.0),
+        ips = header.get("ips", 0.0),
+        sks_kumulatif = header.get("sks_kumulatif", 0),
         sks_semester_lalu = header.get("sks_semester_lalu", 0),
-        batas_ambil_sks   = header.get("batas_ambil_sks", 0),
-        source_file       = pdf_path.name,
+        batas_ambil_sks = header.get("batas_ambil_sks", 0),
+        source_file = pdf_path.name,
     )
 
     seen = set()  # deduplikasi berdasarkan nama matakuliah

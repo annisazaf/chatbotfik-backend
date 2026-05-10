@@ -74,8 +74,7 @@ def token_required(f):
     return decorated
 
 
-# REGISTER
-
+# Daftar/register
 @auth_bp.route("/register", methods=["POST"])
 def register():
     data = request.get_json(silent=True)
@@ -119,8 +118,7 @@ def register():
         return jsonify({"error": "Terjadi kesalahan server, coba lagi"}), 500
 
 
-# LOGIN
-
+# Login
 @auth_bp.route("/login", methods=["POST"])
 def login():
     data = request.get_json(silent=True)
@@ -158,7 +156,6 @@ def login():
 
 
 # ME
-
 @auth_bp.route("/me", methods=["GET"])
 @token_required
 def get_me(user):
@@ -170,8 +167,7 @@ def get_me(user):
     }), 200
 
 
-# LOGOUT
-
+# Logout
 @auth_bp.route("/logout", methods=["POST"])
 def logout():
     session.clear()

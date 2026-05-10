@@ -1,13 +1,3 @@
-"""
-Endpoints:
-  POST   /api/chatbot/upload = Upload PDF KHS, init sesi chat
-  POST   /api/chatbot/chat = Kirim pesan, dapat balasan AI
-  GET    /api/chatbot/sessions = List semua sesi chat milik user
-  GET    /api/chatbot/sessions/<id> = Detail sesi + full history pesan
-  DELETE /api/chatbot/sessions/<id> = Hapus sesi chat
-  GET    /api/chatbot/sessions/<id>/khs = Data KHS dari sesi tertentu
-"""
-
 import uuid
 from datetime import datetime
 from pathlib import Path
@@ -15,7 +5,7 @@ from pathlib import Path
 from flask import Blueprint, request, jsonify
 from src.api.auth.routes import db, get_nim_from_token
 from src.models import KHSUpload, ChatSession, ChatMessage
-from src.chatbot import proses_khs, build_system_prompt, chat as ai_chat
+from src.chatbot import proses_khs, build_system_prompt, chat as ai_chat, get_pengetahuan_tambahan
 
 chatbot_bp = Blueprint('chatbot', __name__)
 
@@ -25,10 +15,9 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 MAX_HISTORY_IN_MEMORY = 20   # pesan terakhir yang dikirim ke LLM sebagai konteks
 
 
-# HELPER
-
+# Helper
 def get_logged_in_nim():
-    """Return NIM dari JWT token, atau None."""
+    """Return NIM dari JWT token, atau None"""
     return get_nim_from_token()
 
 
@@ -42,9 +31,9 @@ def require_login():
 
 def build_history_for_llm(chat_session: ChatSession) -> list[dict]:
     """
-    Ambil N pesan terakhir dari DB dan format menjadi list
+    Ambil N pesan terakhir dari database dan format menjadi list
     [{"role": "user"|"assistant", "content": "..."}]
-    yang siap dikirim ke LLM.
+    yang siap dikirim ke LLM
     """
     messages = (
         ChatMessage.query
@@ -59,21 +48,13 @@ def build_history_for_llm(chat_session: ChatSession) -> list[dict]:
 
 
 def derive_session_title(pesan: str) -> str:
-    """Gunakan 60 karakter pertama dari pesan pertama sebagai judul sesi."""
+    """Mengambil 60 karakter pertama dari pesan pertama sebagai judul riwayat"""
     return pesan[:60] + ("..." if len(pesan) > 60 else "")
 
 
-# UPLOAD KHS - BUAT SESI CHAT BARU
-
+# Upload KHS untuk buat sesi chat baru
 @chatbot_bp.route("/upload", methods=["POST"])
 def upload_khs():
-    """
-    Upload PDF KHS.
-    - Ekstrak data akademik dari PDF
-    - Simpan ke tabel khs_uploads
-    - Buat sesi chat baru di tabel chat_sessions
-    - Return data akademik + session_id
-    """
     nim, err = require_login()
     if err:
         return err
@@ -123,19 +104,19 @@ def upload_khs():
         persen = (hasil.get('sks_sudah_tempuh', 0) / total_sks * 100) if total_sks > 0 else 0
 
         return jsonify({
-            "session_id":  session_id,
-            "khs_id":      khs_upload.id,
-            "nama":        hasil.get("nama_mahasiswa"),
-            "nim":         hasil.get("nim"),
-            "prodi":       hasil.get("program_studi"),
-            "ipk":         hasil.get("ipk"),
-            "ips":         hasil.get("ips"),
-            "sks_tempuh":  hasil.get("sks_sudah_tempuh"),
-            "sks_total":   total_sks,
-            "sks_sisa":    hasil.get("sks_belum_tempuh"),
-            "mk_lulus":    hasil.get("jumlah_mk_lulus"),
-            "mk_belum":    hasil.get("jumlah_mk_belum"),
-            "persen":      round(persen, 1),
+            "session_id":session_id,
+            "khs_id":khs_upload.id,
+            "nama":hasil.get("nama_mahasiswa"),
+            "nim":hasil.get("nim"),
+            "prodi":hasil.get("program_studi"),
+            "ipk":hasil.get("ipk"),
+            "ips":hasil.get("ips"),
+            "sks_tempuh":hasil.get("sks_sudah_tempuh"),
+            "sks_total":total_sks,
+            "sks_sisa":hasil.get("sks_belum_tempuh"),
+            "mk_lulus":hasil.get("jumlah_mk_lulus"),
+            "mk_belum":hasil.get("jumlah_mk_belum"),
+            "persen":round(persen, 1),
         }), 200
 
     except Exception as e:
@@ -150,19 +131,10 @@ def upload_khs():
             pdf_path.unlink()
 
 
-# CHAT — KIRIM PESAN & DAPAT BALASAN
-
+# Chat, kirim pesan, dapat respons
 @chatbot_bp.route("/chat", methods=["POST"])
 def chat_endpoint():
-    """
-    Kirim pesan ke chatbot.
-    Body JSON: { "session_id": "...", "pesan": "..." }
-
-    - Load chat session dari DB (validasi kepemilikan)
-    - Ambil history dari DB untuk konteks LLM
-    - Panggil AI, simpan pesan user + balasan ke DB
-    - Return balasan
-    """
+    
     nim, err = require_login()
     if err:
         return err
@@ -172,7 +144,7 @@ def chat_endpoint():
         return jsonify({"error": "Request body tidak valid atau bukan JSON."}), 400
 
     session_id = data.get("session_id", "").strip()
-    pesan      = data.get("pesan", "").strip()
+    pesan = data.get("pesan", "").strip()
 
     if not session_id:
         return jsonify({"error": "session_id harus disertakan."}), 400
@@ -193,8 +165,11 @@ def chat_endpoint():
         # Ambil history dari DB untuk konteks LLM
         history = build_history_for_llm(chat_session)
 
+        # Gabungkan system prompt mahasiswa + pengetahuan tambahan dari admin
+        system_prompt = chat_session.system_prompt + get_pengetahuan_tambahan()
+
         # Panggil AI
-        jawaban = ai_chat(pesan, history, chat_session.system_prompt)
+        jawaban = ai_chat(pesan, history, system_prompt)
 
         # Simpan pesan user ke DB
         db.session.add(ChatMessage(
@@ -223,14 +198,10 @@ def chat_endpoint():
         return jsonify({"error": f"Gagal mendapatkan respons AI: {str(e)}"}), 500
 
 
-# LIST SEMUA SESI CHAT MILIK USER
-
+# List semua sesi chat user (riwayat chat) diurutkan dari yang terbaru digunakan
 @chatbot_bp.route("/sessions", methods=["GET"])
 def list_sessions():
-    """
-    Return semua sesi chat milik user yang login,
-    diurutkan dari yang paling baru aktif.
-    """
+    
     nim, err = require_login()
     if err:
         return err
@@ -248,14 +219,10 @@ def list_sessions():
     }), 200
 
 
-# DETAIL SESI + FULL HISTORY PESAN
-
+# Detail sesi chat dan full history pesan
 @chatbot_bp.route("/sessions/<session_id>", methods=["GET"])
 def get_session(session_id):
-    """
-    Return detail sesi chat beserta seluruh history pesan.
-    Dipakai frontend saat user membuka/melanjutkan sesi lama.
-    """
+    """Dipakai frontend saat user membuka/melanjutkan sesi lama"""
     nim, err = require_login()
     if err:
         return err
@@ -267,14 +234,10 @@ def get_session(session_id):
     return jsonify(chat_session.to_dict(include_messages=True)), 200
 
 
-# DATA KHS DARI SESI TERTENTU
-
+# Data KHS dari sesi tertentu yang dipilih (tidak perlu re-upload)
 @chatbot_bp.route("/sessions/<session_id>/khs", methods=["GET"])
 def get_session_khs(session_id):
-    """
-    Return data KHS (hasil ekstraksi PDF) dari sesi tertentu.
-    Berguna untuk ditampilkan ulang di UI tanpa re-upload.
-    """
+    
     nim, err = require_login()
     if err:
         return err
@@ -291,30 +254,26 @@ def get_session_khs(session_id):
     persen = (hasil.get('sks_sudah_tempuh', 0) / total_sks * 100) if total_sks > 0 else 0
 
     return jsonify({
-        "khs_id":      chat_session.khs_upload.id,
-        "upload_time": chat_session.khs_upload.upload_time.isoformat(),
-        "nama":        hasil.get("nama_mahasiswa"),
-        "nim":         hasil.get("nim"),
-        "prodi":       hasil.get("program_studi"),
-        "ipk":         hasil.get("ipk"),
-        "ips":         hasil.get("ips"),
-        "sks_tempuh":  hasil.get("sks_sudah_tempuh"),
-        "sks_total":   total_sks,
-        "sks_sisa":    hasil.get("sks_belum_tempuh"),
-        "mk_lulus":    hasil.get("jumlah_mk_lulus"),
-        "mk_belum":    hasil.get("jumlah_mk_belum"),
-        "persen":      round(persen, 1),
+        "khs_id":chat_session.khs_upload.id,
+        "upload_time":chat_session.khs_upload.upload_time.isoformat(),
+        "nama":hasil.get("nama_mahasiswa"),
+        "nim":hasil.get("nim"),
+        "prodi":hasil.get("program_studi"),
+        "ipk":hasil.get("ipk"),
+        "ips":hasil.get("ips"),
+        "sks_tempuh":hasil.get("sks_sudah_tempuh"),
+        "sks_total":total_sks,
+        "sks_sisa":hasil.get("sks_belum_tempuh"),
+        "mk_lulus":hasil.get("jumlah_mk_lulus"),
+        "mk_belum":hasil.get("jumlah_mk_belum"),
+        "persen":round(persen, 1),
     }), 200
 
 
-# HAPUS SESI CHAT
-
+# Hapus sesi chat
 @chatbot_bp.route("/sessions/<session_id>", methods=["DELETE"])
 def delete_session(session_id):
-    """
-    Hapus sesi chat beserta semua pesannya (cascade).
-    KHSUpload tidak ikut dihapus.
-    """
+    
     nim, err = require_login()
     if err:
         return err
@@ -332,8 +291,7 @@ def delete_session(session_id):
         return jsonify({"error": f"Gagal menghapus sesi: {str(e)}"}), 500
 
 
-# REKOMENDASI MATA KULIAH & KARIER
-
+# Rekomendasi matkul dan karier
 @chatbot_bp.route("/sessions/<session_id>/rekomendasi", methods=["GET"])
 def get_rekomendasi(session_id):
     nim, err = require_login()
@@ -359,21 +317,21 @@ def get_rekomendasi(session_id):
     # Generate dari AI
     hasil = khs.hasil_json or {}
     prompt = f"""
-Kamu adalah asisten akademik. Berdasarkan data KHS mahasiswa berikut, berikan rekomendasi dalam format JSON.
-Data KHS:
-{hasil}
-Berikan response dalam format JSON berikut (HANYA JSON, tanpa teks lain):
-{{
-    "mk_eligible": [
-        {{"nama": "Nama MK", "sks": 3, "alasan": "Prasyarat Terpenuhi"}}
-    ],
-    "mk_belum": [
-        {{"nama": "Nama MK", "alasan": "Belum Memenuhi Prasyarat", "keterangan": "Detail prasyarat yang kurang"}}
-    ],
-    "strategi": "Teks rekomendasi strategi akademik...",
-    "karier": "Teks rekomendasi karier..."
-}}
-    """
+    Kamu adalah asisten akademik. Berdasarkan data KHS mahasiswa berikut, berikan rekomendasi dalam format JSON.
+    Data KHS:
+    {hasil}
+    Berikan response dalam format JSON berikut (HANYA JSON, tanpa teks lain):
+    {{
+        "mk_eligible": [
+            {{"nama": "Nama MK", "sks": 3, "alasan": "Prasyarat Terpenuhi"}}
+        ],
+        "mk_belum": [
+            {{"nama": "Nama MK", "alasan": "Belum Memenuhi Prasyarat", "keterangan": "Detail prasyarat yang kurang"}}
+        ],
+        "strategi": "Teks rekomendasi strategi akademik...",
+        "karier": "Teks rekomendasi karier..."
+    }}
+        """
 
     try:
         import json
@@ -412,13 +370,23 @@ def get_latest_khs():
     hasil = latest.hasil_json
     return jsonify({
         "has_khs":    True,
-        "nama":       hasil.get("nama_mahasiswa"),   # ← bukan "nama"
-        "nim":        hasil.get("nim"),
-        "ipk":        hasil.get("ipk"),
-        "ips":        hasil.get("ips"),
-        "sks_tempuh": hasil.get("sks_sudah_tempuh"), # ← bukan "sks_tempuh"
-        "sks_total":  144,
-        "persen":     round(hasil.get("sks_sudah_tempuh", 0) / 144 * 100, 1),
-        "mk_lulus":   hasil.get("jumlah_mk_lulus"),  # ← bukan "mk_lulus"
-        "upload_time": latest.upload_time.isoformat(),
+        "nama":hasil.get("nama_mahasiswa"),
+        "nim":hasil.get("nim"),
+        "ipk":hasil.get("ipk"),
+        "ips":hasil.get("ips"),
+        "sks_tempuh":hasil.get("sks_sudah_tempuh"),
+        "sks_total":144,
+        "persen":round(hasil.get("sks_sudah_tempuh", 0) / 144 * 100, 1),
+        "mk_lulus":hasil.get("jumlah_mk_lulus"),
+        "upload_time":latest.upload_time.isoformat(),
     }), 200
+
+"""
+Endpoints:
+  POST   /api/chatbot/upload = Upload PDF KHS, init sesi chat
+  POST   /api/chatbot/chat = Kirim pesan, dapat balasan AI
+  GET    /api/chatbot/sessions = List semua sesi chat milik user
+  GET    /api/chatbot/sessions/<id> = Detail sesi + full history pesan
+  DELETE /api/chatbot/sessions/<id> = Hapus sesi chat
+  GET    /api/chatbot/sessions/<id>/khs = Data KHS dari sesi tertentu
+"""

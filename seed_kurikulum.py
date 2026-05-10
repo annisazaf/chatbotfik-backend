@@ -1,7 +1,5 @@
-"""
-Script sekali-pakai untuk migrasi data kurikulum dari file XLSX
-yang sudah ada ke tabel database (kurikulum_prodi + mata_kuliah_kurikulum).
-"""
+"""Script sekali-pakai untuk migrasi data kurikulum dari file XLSX
+yang sudah ada ke tabel database (kurikulum_prodi + mata_kuliah_kurikulum)"""
 
 import sys
 from pathlib import Path
@@ -51,20 +49,20 @@ def seed():
             if peminatan:
                 jalur = peminatan.get("jalur", {})
                 peminatan_config = {
-                    "harus_konsisten":   peminatan.get("harus_konsisten", False),
-                    "min_mk_per_jalur":  peminatan.get("min_mk_per_jalur", 0),
-                    "jalur":             jalur if isinstance(jalur, dict) else {},
-                    "keterangan":        peminatan.get("keterangan", ""),
+                    "harus_konsisten": peminatan.get("harus_konsisten", False),
+                    "min_mk_per_jalur": peminatan.get("min_mk_per_jalur", 0),
+                    "jalur": jalur if isinstance(jalur, dict) else {},
+                    "keterangan": peminatan.get("keterangan", ""),
                 }
 
             # Buat record prodi
             prodi_record = KurikulumProdi(
-                nama_prodi        = nama_prodi,
-                total_semester    = aturan.get("total_semester", 8),
-                sks_lulus         = aturan.get("sks_lulus", 144),
+                nama_prodi = nama_prodi,
+                total_semester = aturan.get("total_semester", 8),
+                sks_lulus = aturan.get("sks_lulus", 144),
                 syarat_sidang_sks = aturan.get("syarat_sidang_sks", 138),
-                is_active         = True,
-                peminatan_config  = peminatan_config,
+                is_active = True,
+                peminatan_config = peminatan_config,
             )
             db.session.add(prodi_record)
             db.session.flush()  # dapat id sebelum commit
@@ -72,18 +70,18 @@ def seed():
             # Masukkan semua mata kuliah
             for urutan, mk in enumerate(kurikulum.matakuliah):
                 mk_record = MataKuliahKurikulum(
-                    prodi_id   = prodi_record.id,
-                    kode       = mk.kode or "",
-                    nama       = mk.nama,
-                    sks        = mk.sks,
-                    semester   = mk.semester,
+                    prodi_id = prodi_record.id,
+                    kode = mk.kode or "",
+                    nama = mk.nama,
+                    sks = mk.sks,
+                    semester = mk.semester,
                     keterangan = mk.keterangan,
-                    prasyarat  = mk.prasyarat,
-                    urutan     = urutan,
+                    prasyarat = mk.prasyarat,
+                    urutan = urutan,
                 )
                 db.session.add(mk_record)
 
-            print(f"    → Tersimpan dengan id={prodi_record.id}")
+            print(f" Tersimpan dengan id={prodi_record.id}")
             seeded += 1
 
         db.session.commit()

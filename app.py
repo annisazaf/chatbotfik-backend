@@ -19,7 +19,10 @@ if database_url and database_url.startswith("postgres://"):
     database_url = database_url.replace("postgres://", "postgresql://", 1)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = database_url or "sqlite:///project.db"
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-secret-key")
+secret_key = os.getenv("SECRET_KEY")
+if not secret_key:
+    raise RuntimeError("SECRET_KEY environment variable is not set")
+app.config["SECRET_KEY"] = secret_key
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SESSION_COOKIE_SAMESITE"] = "None"
 app.config["SESSION_COOKIE_SECURE"] = True
@@ -63,14 +66,6 @@ with app.app_context():
 @app.route("/")
 def index():
     return jsonify({"status": "Server ChatbotFIK running ✓"}), 200
-
-
-@app.route("/debug-db")
-def debug_db():
-    return jsonify({
-        "database_url_terbaca": bool(database_url),
-        "database_dipakai": app.config["SQLALCHEMY_DATABASE_URI"],
-    }), 200
 
 
 if __name__ == "__main__":

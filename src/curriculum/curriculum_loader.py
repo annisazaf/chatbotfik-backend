@@ -1,20 +1,9 @@
-"""
-Cara load kurikulum:
-1. load_all_kurikulum_from_db()  - baca dari PostgreSQL (production)
-2. load_kurikulum_from_db()      - baca satu prodi dari DB
-3. load_kurikulum()              - baca dari XLSX (hanya seed_kurikulum.py)
-4. load_all_kurikulum()          - baca semua XLSX (hanya seed_kurikulum.py)
-"""
-
 import re
 from pathlib import Path
 from dataclasses import dataclass, field
 from typing import Optional
 
 import openpyxl
-
-
-# DATA CLASSES
 
 @dataclass
 class MataKuliahKurikulum:
@@ -34,11 +23,9 @@ class Kurikulum:
     matakuliah: list = field(default_factory=list)
 
 
-# LOAD DARI DATABASE (production)
-
+# Load dari database (production)
 def load_kurikulum_from_db(nama_prodi: str) -> Optional[Kurikulum]:
-    """Baca kurikulum satu prodi dari PostgreSQL. Return None jika tidak ditemukan."""
-    from src.models import KurikulumProdi  # import lokal hindari circular
+    from src.models import KurikulumProdi
 
     prodi = KurikulumProdi.query.filter_by(nama_prodi=nama_prodi, is_active=True).first()
     if not prodi:
@@ -47,13 +34,13 @@ def load_kurikulum_from_db(nama_prodi: str) -> Optional[Kurikulum]:
     kurikulum = Kurikulum(program_studi=prodi.nama_prodi, total_sks=0)
     for mk in prodi.mata_kuliah:
         kurikulum.matakuliah.append(MataKuliahKurikulum(
-            no         = mk.urutan,
-            kode       = mk.kode or "",
-            nama       = mk.nama,
-            sks        = mk.sks,
-            prasyarat  = mk.prasyarat,
+            no = mk.urutan,
+            kode = mk.kode or "",
+            nama = mk.nama,
+            sks = mk.sks,
+            prasyarat = mk.prasyarat,
             keterangan = mk.keterangan,
-            semester   = mk.semester,
+            semester = mk.semester,
         ))
         kurikulum.total_sks += mk.sks
 
@@ -69,13 +56,13 @@ def load_all_kurikulum_from_db() -> dict:
         kurikulum = Kurikulum(program_studi=prodi.nama_prodi, total_sks=0)
         for mk in prodi.mata_kuliah:
             kurikulum.matakuliah.append(MataKuliahKurikulum(
-                no         = mk.urutan,
-                kode       = mk.kode or "",
-                nama       = mk.nama,
-                sks        = mk.sks,
-                prasyarat  = mk.prasyarat,
+                no = mk.urutan,
+                kode = mk.kode or "",
+                nama = mk.nama,
+                sks = mk.sks,
+                prasyarat = mk.prasyarat,
                 keterangan = mk.keterangan,
-                semester   = mk.semester,
+                semester = mk.semester,
             ))
             kurikulum.total_sks += mk.sks
         result[prodi.nama_prodi] = kurikulum
@@ -83,8 +70,7 @@ def load_all_kurikulum_from_db() -> dict:
     return result
 
 
-# LOAD DARI XLSX (hanya untuk seed_kurikulum.py)
-
+# Load data dari xlsx (hanya untuk seed_kurikulum.py)
 FILE_TO_PRODI = {
     "KurikulumD3SistemInformasi.xlsx": "D3 Sistem Informasi",
     "KurikulumS1Informatika.xlsx":     "S1 Informatika",
@@ -111,7 +97,7 @@ def is_header_row(row: tuple) -> bool:
 
 
 def load_kurikulum(xlsx_path) -> Kurikulum:
-    """Baca satu file XLSX. HANYA dipakai seed_kurikulum.py."""
+    """Baca satu file XLSX, hanya dipakai seed_kurikulum.py"""
     xlsx_path = Path(xlsx_path)
     if not xlsx_path.exists():
         raise FileNotFoundError(f"File tidak ditemukan: {xlsx_path}")
@@ -142,13 +128,13 @@ def load_kurikulum(xlsx_path) -> Kurikulum:
             continue
 
         kurikulum.matakuliah.append(MataKuliahKurikulum(
-            no         = no,
-            kode       = str(kode).strip() if kode else "",
-            nama       = str(nama).strip(),
-            sks        = sks,
-            prasyarat  = str(prasyarat).strip() if prasyarat else None,
+            no = no,
+            kode = str(kode).strip() if kode else "",
+            nama = str(nama).strip(),
+            sks = sks,
+            prasyarat = str(prasyarat).strip() if prasyarat else None,
             keterangan = str(keterangan).strip() if keterangan else None,
-            semester   = current_semester,
+            semester = current_semester,
         ))
         kurikulum.total_sks += sks
 
@@ -156,7 +142,7 @@ def load_kurikulum(xlsx_path) -> Kurikulum:
 
 
 def load_all_kurikulum(kurikulum_dir) -> dict:
-    """Baca semua XLSX di folder. HANYA dipakai seed_kurikulum.py."""
+    """Baca semua XLSX di folder, hanya dipakai seed_kurikulum.py"""
     kurikulum_dir = Path(kurikulum_dir)
     result = {}
     for xlsx_file in sorted(kurikulum_dir.glob("*.xlsx")):
@@ -167,3 +153,11 @@ def load_all_kurikulum(kurikulum_dir) -> dict:
         except Exception as e:
             print(f"  [ERROR] {xlsx_file.name}: {e}")
     return result
+
+"""
+Cara load kurikulum:
+1. load_all_kurikulum_from_db() - baca dari PostgreSQL (production)
+2. load_kurikulum_from_db() - baca satu prodi dari DB
+3. load_kurikulum() - baca dari XLSX (hanya seed_kurikulum.py)
+4. load_all_kurikulum() - baca semua XLSX (hanya seed_kurikulum.py)
+"""

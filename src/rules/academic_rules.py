@@ -116,12 +116,94 @@ PEMINATAN_PRODI = {
     },
 }
 
+# ATURAN SKPI (SURAT KETERANGAN PENDAMPING IJAZAH)
+
+ATURAN_SKPI = {
+    "deskripsi": (
+        "SKPI adalah dokumen resmi yang menyertai ijazah dan mencatat capaian mahasiswa "
+        "di luar akademik. Wajib dipenuhi sebagai syarat kelulusan."
+    ),
+    "syarat": [
+        {
+            "nomor": 1,
+            "judul": "Minimal 5 Sertifikat Kegiatan",
+            "deskripsi": (
+                "Mahasiswa wajib memiliki minimal 5 sertifikat dari kegiatan non-akademik. "
+                "Sertifikat dapat berasal dari:"
+            ),
+            "kategori": [
+                "Webinar",
+                "Seminar",
+                "Pelatihan / Workshop",
+                "Lomba / Kompetisi",
+                "Kejuaraan (tingkat program studi, fakultas, universitas, nasional, atau internasional)",
+            ],
+            "wajib": True,
+            "min_jumlah": 5,
+        },
+        {
+            "nomor": 2,
+            "judul": "Lolos Program Kreativitas Mahasiswa (PKM) Tingkat Universitas",
+            "deskripsi": (
+                "Mahasiswa wajib pernah mengikuti dan lolos seleksi PKM "
+                "minimal di tingkat universitas (UPNVJ)."
+            ),
+            "kategori": [
+                "PKM-RE (Riset Eksakta)",
+                "PKM-RSH (Riset Sosial Humaniora)",
+                "PKM-PM (Pengabdian kepada Masyarakat)",
+                "PKM-PI (Penerapan IPTEK)",
+                "PKM-K (Kewirausahaan)",
+                "PKM-KC (Karsa Cipta)",
+                "PKM-GFT (Gagasan Futuristik Tertulis)",
+                "PKM-VGK (Video Gagasan Konstruktif)",
+            ],
+            "wajib": True,
+            "min_jumlah": 1,
+        },
+        {
+            "nomor": 3,
+            "judul": "Sertifikat Keahlian / Profesi",
+            "deskripsi": (
+                "Mahasiswa wajib memiliki minimal 1 sertifikat keahlian atau profesi "
+                "yang diakui dari lembaga resmi yang bekerja sama dengan UPNVJ."
+            ),
+            "lembaga_diakui": [
+                "BNSP (Badan Nasional Sertifikasi Profesi)",
+                "LSP UPNVJ (Lembaga Sertifikasi Profesi UPN Veteran Jakarta)",
+                "Hactiv8",
+                "IBM",
+                "Certiport",
+                "Lembaga lain yang memiliki MoU resmi dengan UPNVJ",
+            ],
+            "wajib": True,
+            "min_jumlah": 1,
+        },
+        {
+            "nomor": 4,
+            "judul": "Sertifikat TOEFL / ELPT",
+            "deskripsi": (
+                "Mahasiswa wajib memiliki sertifikat kemampuan bahasa Inggris "
+                "dengan skor minimal 450."
+            ),
+            "jenis_tes": [
+                "TOEFL ITP",
+                "TOEFL iBT",
+                "ELPT (English Language Proficiency Test) UPNVJ",
+            ],
+            "skor_minimal": 450,
+            "wajib": True,
+            "min_jumlah": 1,
+        },
+    ],
+}
+
+
 # ATURAN MBKM PER NIM
 
 def get_semester_mbkm(nim: str) -> int:
     """
-    Tentukan semester MBKM berdasarkan digit terakhir NIM.
-    Ganjil (semester 5), Genap (semester 6).
+    Digit terakhir NIM Ganjil (semester 5), Genap (semester 6)
     """
     try:
         digit_terakhir = int(str(nim).strip()[-1])
