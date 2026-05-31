@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\Annisa\\\\projectskripsi\" -Force)",
+      "Bash(Format-List -Property Name, PSIsContainer)"
+    ]
+  }
+}

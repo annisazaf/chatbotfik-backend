@@ -1,0 +1,12 @@
+﻿.env
+.env.*
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+.venv/
+venv/
+*.db
+instance/
+output/
+uploads_temp/
+check_user.py

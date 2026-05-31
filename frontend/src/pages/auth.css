@@ -1,0 +1,615 @@
+/* ─────────────────────────────────────────────
+   auth.css — shared styles untuk LoginPage & RegisterPage
+   ───────────────────────────────────────────── */
+
+/* Wrapper halaman */
+.auth-page {
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f6f7;
+  overflow-x: hidden;
+}
+
+/* ── Navbar ── */
+.auth-navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.07);
+}
+
+.auth-navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 15px;
+  color: #307045;
+  letter-spacing: 0.3px;
+}
+
+.auth-navbar__links {
+  display: none; /* hidden on mobile */
+  gap: 20px;
+}
+
+.auth-navbar__link {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.auth-navbar__link--active {
+  font-weight: 700;
+  color: #307045;
+  border-bottom-color: #307045;
+}
+
+.auth-navbar__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #9ca3af;
+}
+
+/* ── Hero section ── */
+.auth-hero {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 62px;
+  background: url('/src/assets/bg-upn.png') center/cover no-repeat;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.auth-hero__blob {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+
+.auth-hero__content {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+}
+
+/* Login: card lebih kecil */
+.auth-hero__content--login  { }
+/* Register: card sedikit lebih lebar karena 4 field */
+.auth-hero__content--register { }
+
+/* ── Hero left text ── */
+.auth-hero__eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.auth-hero__title {
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin: 0 0 18px;
+  text-align: center;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.18);
+}
+
+.auth-hero__subtitle {
+  color: rgba(255,255,255,0.78);
+  font-size: 15px;
+  line-height: 1.65;
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Auth card (form) ── */
+.auth-card {
+  background: rgba(255,255,255,0.98);
+  border-radius: 22px;
+  padding: 32px 24px;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.22);
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-card--register {
+  padding: 28px 24px;
+  max-width: 420px;
+}
+
+.auth-card__header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.auth-card__header--register {
+  margin-bottom: 20px;
+}
+
+.auth-card__logo-wrap {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: #e8f5e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+}
+
+.auth-card__title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #111;
+  margin: 0 0 4px;
+}
+
+.auth-card__desc {
+  color: #9ca3af;
+  font-size: 13px;
+  margin: 0;
+}
+
+/* ── Form dalam card ── */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-form--register {
+  gap: 12px;
+}
+
+.auth-form__label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.auth-form__input {
+  height: 46px !important;
+  border-radius: 10px !important;
+  font-size: 14px !important;
+  border: 1.5px solid #e5e7eb !important;
+  padding-left: 14px !important;
+}
+
+.auth-form__btn {
+  height: 48px;
+  border-radius: 10px;
+  background: #307045;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+  box-shadow: 0 4px 16px rgba(48,112,69,0.3);
+  transition: background 0.2s, transform 0.2s;
+  width: 100%;
+}
+
+.auth-form__btn:hover:not(:disabled) {
+  background: #255a36;
+  transform: translateY(-1px);
+}
+
+.auth-form__btn:disabled {
+  background: #6aab80;
+  cursor: not-allowed;
+}
+
+.auth-form__footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.auth-form__link {
+  color: #307045;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ── FIKA chat bubble section ── */
+.auth-chat-section {
+  background: #fff;
+  padding: 48px 20px 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-chat-section__inner {
+  max-width: 680px;
+  width: 100%;
+}
+
+.auth-chat-section__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.auth-chat-section__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #e8f5e9;
+  border: 2px solid #a5d6a7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.auth-chat-section__bubbles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-bubble {
+  background: #f3f4f6;
+  border-radius: 4px 16px 16px 16px;
+  padding: 12px 16px;
+}
+
+.auth-bubble__name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111;
+}
+
+.auth-bubble__tagline {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.auth-bubble__body {
+  margin: 0;
+  font-size: 13px;
+  color: #374151;
+  line-height: 1.65;
+}
+
+/* ── Fitur unggulan section ── */
+.auth-features-section {
+  background: #f9fafb;
+  padding: 48px 20px;
+}
+
+.auth-features-section__inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.auth-section-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  color: #111;
+  margin: 0 0 6px;
+}
+
+.auth-section-divider {
+  text-align: center;
+  color: #307045;
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0 0 28px;
+}
+
+.auth-section-divider--sm {
+  margin: 0 0 20px;
+}
+
+.auth-feature-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  border: 1px solid #f0f0f0;
+}
+
+.auth-feature-card--top {
+  align-items: flex-start;
+}
+
+.auth-feature-card__emoji {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.auth-feature-card__title {
+  font-weight: 700;
+  font-size: 14px;
+  color: #111;
+}
+
+.auth-feature-card__desc {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.65;
+}
+
+.auth-feature-card__image {
+  width: 120px;
+  height: 90px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-left: auto;
+}
+
+/* ── Cara penggunaan section ── */
+.auth-steps-section {
+  background: #fff;
+  padding: 48px 20px;
+}
+
+.auth-steps-section__inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.auth-steps-fika {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.auth-steps-fika__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e8f5e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.auth-steps-fika__bubble {
+  background: #f3f4f6;
+  border-radius: 4px 14px 14px 14px;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: #374151;
+  margin: 0;
+}
+
+/* Steps: 2 col on mobile, 4 col on desktop */
+.auth-steps-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  justify-content: center;
+}
+
+.auth-step-card {
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 20px 14px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+}
+
+.auth-step-card__number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #307045;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 13px;
+  margin: 0 auto 12px;
+}
+
+.auth-step-card__emoji {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.auth-step-card__title {
+  font-weight: 700;
+  font-size: 13px;
+  color: #111;
+  margin-bottom: 6px;
+}
+
+.auth-step-card__desc {
+  font-size: 11px;
+  color: #6b7280;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ── Footer ── */
+.auth-footer {
+  background: #1b5e35;
+  padding: 20px;
+  text-align: center;
+  color: rgba(255,255,255,0.55);
+  font-size: 12px;
+}
+
+/* ── Feature card hover expand ── */
+.auth-feature-card--hover {
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+  overflow: hidden;
+}
+.auth-feature-card--hover:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+  transform: translateY(-2px);
+}
+.auth-feature-card__desc--tooltip {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.3s ease;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: #555;
+  margin-top: 0;
+}
+.auth-feature-card--hover:hover .auth-feature-card__desc--tooltip {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 8px;
+}
+
+/* ── MEDIA QUERIES ── */
+
+/* Tablet and up (md: 768px) */
+@media (min-width: 768px) {
+  .auth-navbar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    padding: 0 48px;
+  }
+
+  .auth-navbar__brand {
+    justify-self: start;
+  }
+
+  .auth-navbar__links {
+    display: flex;
+    justify-self: center;
+  }
+
+  .auth-hero__content {
+    padding: 60px 48px;
+    flex-direction: row;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .auth-hero__content--login  { }
+  .auth-hero__content--register { }
+
+  .auth-hero__eyebrow,
+  .auth-hero__title,
+  .auth-hero__subtitle {
+    text-align: left;
+  }
+
+  .auth-hero__title {
+    font-size: 44px;
+  }
+
+  .auth-card {
+    min-width: 380px;
+  }
+
+  .auth-card--register {
+    min-width: 400px;
+  }
+
+  .auth-chat-section {
+    padding: 72px 48px 56px;
+  }
+
+  .auth-features-section {
+    padding: 64px 48px;
+  }
+
+  .auth-steps-section {
+    padding: 64px 48px;
+  }
+
+  .auth-steps-row {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .auth-step-card {
+    padding: 24px 18px;
+  }
+
+  .auth-step-card__number {
+    width: 44px;
+    height: 44px;
+    font-size: 14px;
+  }
+
+  .auth-step-card__emoji {
+    font-size: 26px;
+  }
+
+  .auth-step-card__title {
+    font-size: 14px;
+  }
+
+  .auth-step-card__desc {
+    font-size: 12px;
+  }
+
+  .auth-footer {
+    padding: 22px 48px;
+    font-size: 13px;
+  }
+
+  .auth-section-title {
+    font-size: 26px;
+  }
+}

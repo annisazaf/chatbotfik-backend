@@ -1,0 +1,33 @@
+# Environment variables (JANGAN pernah di-commit)
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.db
+instance/
+
+# Node / Frontend
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Upload temp
+backend/output/
+backend/uploads_temp/
+
+# Claude Code
+.claude/
