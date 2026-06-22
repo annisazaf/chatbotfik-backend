@@ -199,14 +199,3 @@ ATURAN_SKPI = {
 }
 
 
-# ATURAN MBKM PER NIM
-
-def get_semester_mbkm(nim: str) -> int:
-    """
-    Digit terakhir NIM Ganjil (semester 5), Genap (semester 6)
-    """
-    try:
-        digit_terakhir = int(str(nim).strip()[-1])
-        return 5 if digit_terakhir % 2 != 0 else 6
-    except (ValueError, IndexError):
-        return 5  # default semester 5

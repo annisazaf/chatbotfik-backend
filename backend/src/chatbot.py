@@ -79,12 +79,6 @@ def build_system_prompt(hasil: dict) -> str:
         for p in hasil.get('peminatan_info', [])
     ]) or "  (tidak ada data peminatan)"
 
-    try:
-        nim_akhir = int(str(hasil['nim'])[-1])
-        nim_jenis = 'ganjil' if nim_akhir % 2 != 0 else 'genap'
-    except (ValueError, IndexError):
-        nim_jenis = '-'
-
     prompt = f"""Kamu adalah asisten akademik chatbot bernama FIKA untuk mahasiswa Fakultas Ilmu Komputer UPN "Veteran" Jakarta.
     Tugasmu membantu mahasiswa memahami progress studi mereka. Jawab ramah, jelas, dalam Bahasa Indonesia.
 
@@ -104,8 +98,6 @@ def build_system_prompt(hasil: dict) -> str:
     IPK           : {hasil['ipk']:.2f}
     IPS Terakhir  : {hasil['ips']:.2f}
     Total Semester: {hasil['total_semester']} semester
-    Semester MBKM : Semester {hasil['semester_mbkm']} (NIM {nim_jenis})
-
     === PROGRESS SKS ===
     SKS Sudah Tempuh    : {hasil['sks_sudah_tempuh']} SKS
     SKS Wajib Lulus     : {hasil['sks_wajib_lulus']} SKS

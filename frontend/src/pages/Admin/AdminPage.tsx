@@ -197,15 +197,12 @@ function TabPengguna({ currentNim }: TabPenggunaProps) {
     if (!window.confirm(`Ubah role ${nim} dari "${currentRole}" menjadi "${newRole}"?`)) return;
     setRoleLoading(nim);
     try {
-    const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/admin/users/${nim}/role`,{
-      method: "PUT",
-      credentials: "include",
-      headers: {"Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("chatbotfik_token") || ""}`,
-    },
-    body: JSON.stringify({ role: newRole }),
-  }
-);
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/admin/users/${nim}/role`, {
+        method: "PUT",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role: newRole }),
+      });
       const data = await res.json();
       if (!res.ok) { alert(data.error || "Gagal mengubah role."); return; }
       setUsers(prev => prev.map(u => u.nim === nim ? { ...u, role: newRole as "admin" | "mahasiswa" } : u));
@@ -217,14 +214,8 @@ function TabPengguna({ currentNim }: TabPenggunaProps) {
     const load = async () => {
       setLoading(true);
       try {
-    const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/admin/users`,{
-      method: "GET",
-      credentials: "include",
-      headers: {
-      Authorization: `Bearer ${localStorage.getItem("chatbotfik_token") || ""}`,
-    },
-  }
-);        const data = await res.json();
+        const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/admin/users`, { credentials: "include" });
+        const data = await res.json();
         setUsers(data.users || []);
       } catch { setUsers([]); }
       finally { setLoading(false); }

@@ -8,7 +8,7 @@ from pathlib import Path
 from src.ocr.khs_extractor import KHSData
 from src.curriculum.curriculum_loader import Kurikulum
 from src.rules.academic_rules import (
-    ATURAN_PRODI, PEMINATAN_PRODI, get_semester_mbkm
+    ATURAN_PRODI, PEMINATAN_PRODI
 )
 
 @dataclass
@@ -63,7 +63,6 @@ class HasilAnalisis:
 
     # Aturan prodi
     total_semester: int
-    semester_mbkm: int
     syarat_sidang_sks: int
     bisa_sidang: bool
 
@@ -182,8 +181,6 @@ def analyze_progress(khs: KHSData, kurikulum: Kurikulum) -> HasilAnalisis:
     sks_wajib = aturan.get("sks_lulus", 144)
     total_sem = aturan.get("total_semester", 8)
     syarat_sidang = aturan.get("syarat_sidang_sks", 138)
-    sem_mbkm = get_semester_mbkm(khs.nim)
-
     mk_lulus = []
     mk_belum = []
     sks_tempuh = 0
@@ -245,7 +242,6 @@ def analyze_progress(khs: KHSData, kurikulum: Kurikulum) -> HasilAnalisis:
         jumlah_mk_lulus = len(mk_lulus),
         jumlah_mk_belum = len(mk_belum),
         total_semester = total_sem,
-        semester_mbkm = sem_mbkm,
         syarat_sidang_sks = syarat_sidang,
         bisa_sidang = bisa_sidang,
         peminatan_info = [asdict(p) for p in peminatan_info],
