@@ -41,7 +41,7 @@ def _send_reset_email(to_email: str, reset_url: str) -> None:
     mail_server   = os.getenv("MAIL_SERVER", "smtp.gmail.com")
     mail_port     = int(os.getenv("MAIL_PORT", "587"))
     mail_user     = os.getenv("MAIL_USERNAME", "")
-    mail_password = os.getenv("MAIL_PASSWORD", "")
+    mail_password = os.getenv("MAIL_PASSWORD", "").replace(" ", "")
     mail_from     = os.getenv("MAIL_FROM", mail_user)
 
     msg = MIMEMultipart("alternative")
@@ -52,7 +52,7 @@ def _send_reset_email(to_email: str, reset_url: str) -> None:
     text_body = f"Klik link berikut untuk mereset password kamu (berlaku 1 jam):\n{reset_url}\n\nJika kamu tidak meminta reset password, abaikan email ini."
     html_body = f"""
     <div style="font-family:sans-serif;max-width:480px;margin:auto;padding:32px;background:#f9fafb;border-radius:12px;">
-      <h2 style="color:#307045;margin-bottom:8px;">Reset Password FIKA</h2>
+      <h2 style="color:#307045;margin-bottom:8px;">Reset Password ChatbotFIK</h2>
       <p style="color:#374151;margin-bottom:24px;">
         Kamu menerima email ini karena ada permintaan reset password untuk akunmu.<br>
         Link ini hanya berlaku selama <strong>1 jam</strong>.
@@ -69,7 +69,7 @@ def _send_reset_email(to_email: str, reset_url: str) -> None:
     msg.attach(MIMEText(text_body, "plain"))
     msg.attach(MIMEText(html_body, "html"))
 
-    with smtplib.SMTP(mail_server, mail_port) as server:
+    with smtplib.SMTP(mail_server, mail_port, timeout=15) as server:
         server.starttls()
         server.login(mail_user, mail_password)
         server.sendmail(mail_from, to_email, msg.as_string())
@@ -195,6 +195,9 @@ def forgot_password():
     except smtplib.SMTPException as exc:
         print(f"[MAIL ERROR] SMTP: {exc}")
         return jsonify({"error": "Gagal mengirim email. Cek konfigurasi MAIL_* di .env"}), 500
+    except (TimeoutError, OSError) as exc:
+        print(f"[MAIL ERROR] Koneksi SMTP timeout: {exc}")
+        return jsonify({"error": "Gagal mengirim email: koneksi ke server Gmail timeout. Coba lagi."}), 500
     except Exception as exc:
         print(f"[MAIL ERROR] {exc}")
         return jsonify({"error": "Gagal mengirim email. Cek konfigurasi MAIL_* di .env"}), 500
