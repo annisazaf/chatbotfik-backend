@@ -4,9 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 import os
 import secrets
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import resend
 from datetime import datetime, timedelta, timezone
 from functools import wraps
 
@@ -38,19 +36,9 @@ class PasswordResetToken(db.Model):
 
 
 def _send_reset_email(to_email: str, reset_url: str) -> None:
-    mail_server   = os.getenv("MAIL_SERVER", "smtp.gmail.com")
-    mail_port     = int(os.getenv("MAIL_PORT"
-                                  , "587"))
-    mail_user     = os.getenv("MAIL_USERNAME", "")
-    mail_password = os.getenv("MAIL_PASSWORD", "").replace(" ", "")
-    mail_from     = os.getenv("MAIL_FROM", mail_user)
+    resend.api_key = os.getenv("RESEND_API_KEY", "")
+    mail_from = os.getenv("MAIL_FROM", "onboarding@resend.dev")
 
-    msg = MIMEMultipart("alternative")
-    msg["Subject"] = "Reset Password – FIKA Konseling Akademik"
-    msg["From"]    = mail_from
-    msg["To"]      = to_email
-
-    text_body = f"Klik link berikut untuk mereset password kamu (berlaku 1 jam):\n{reset_url}\n\nJika kamu tidak meminta reset password, abaikan email ini."
     html_body = f"""
     <div style="font-family:sans-serif;max-width:480px;margin:auto;padding:32px;background:#f9fafb;border-radius:12px;">
       <h2 style="color:#307045;margin-bottom:8px;">Reset Password ChatbotFIK</h2>
@@ -67,19 +55,12 @@ def _send_reset_email(to_email: str, reset_url: str) -> None:
       </p>
     </div>"""
 
-    msg.attach(MIMEText(text_body, "plain"))
-    msg.attach(MIMEText(html_body, "html"))
-
-    use_ssl = int(os.getenv("MAIL_PORT", "587")) == 465
-    if use_ssl:
-        with smtplib.SMTP_SSL(mail_server, mail_port, timeout=15) as server:
-            server.login(mail_user, mail_password)
-            server.sendmail(mail_from, to_email, msg.as_string())
-    else:
-        with smtplib.SMTP(mail_server, mail_port, timeout=15) as server:
-            server.starttls()
-            server.login(mail_user, mail_password)
-            server.sendmail(mail_from, to_email, msg.as_string())
+    resend.Emails.send({
+        "from": mail_from,
+        "to": [to_email],
+        "subject": "Reset Password – FIKA Konseling Akademik",
+        "html": html_body,
+    })
 
 
 def _get_secret():
@@ -196,18 +177,9 @@ def forgot_password():
 
     try:
         _send_reset_email(email, reset_url)
-    except smtplib.SMTPAuthenticationError:
-        print("[MAIL ERROR] Autentikasi SMTP gagal. Pastikan App Password Gmail sudah benar.")
-        return jsonify({"error": "Gagal mengirim email: autentikasi Gmail gagal. Cek App Password di .env"}), 500
-    except smtplib.SMTPException as exc:
-        print(f"[MAIL ERROR] SMTP: {exc}")
-        return jsonify({"error": "Gagal mengirim email. Cek konfigurasi MAIL_* di .env"}), 500
-    except (TimeoutError, OSError) as exc:
-        print(f"[MAIL ERROR] Koneksi SMTP timeout: {exc}")
-        return jsonify({"error": "Gagal mengirim email: koneksi ke server Gmail timeout. Coba lagi."}), 500
     except Exception as exc:
         print(f"[MAIL ERROR] {exc}")
-        return jsonify({"error": "Gagal mengirim email. Cek konfigurasi MAIL_* di .env"}), 500
+        return jsonify({"error": "Gagal mengirim email. Cek konfigurasi RESEND_API_KEY."}), 500
 
     return jsonify({"message": "Jika email terdaftar, link reset telah dikirim"}), 200
 
