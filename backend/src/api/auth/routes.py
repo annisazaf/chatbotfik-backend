@@ -36,7 +36,10 @@ class PasswordResetToken(db.Model):
 
 
 def _send_reset_email(to_email: str, reset_url: str) -> None:
-    resend.api_key = os.getenv("RESEND_API_KEY", "")
+    api_key = os.getenv("RESEND_API_KEY", "")
+    if not api_key:
+        raise ValueError("RESEND_API_KEY tidak ditemukan di environment variables")
+    resend.api_key = api_key
     mail_from = os.getenv("MAIL_FROM", "onboarding@resend.dev")
 
     html_body = f"""
