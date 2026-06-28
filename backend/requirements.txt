@@ -177,6 +177,6 @@ urllib3==2.6.3
 wcwidth==0.2.13
 Werkzeug==3.1.7
 wordcloud==1.9.3
-resend==2.10.0
+resend==2.32.2
 wrapt==1.16.0
 xgboost==3.1.2
