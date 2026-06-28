@@ -92,7 +92,7 @@ narwhals==1.35.0
 nest-asyncio==1.6.0
 networkx==3.2.1
 nltk==3.8.1
-numpy==1.23.5
+numpy==1.26.4
 openai==2.30.0
 opencv-python==4.9.0.80
 openpyxl==3.1.5
@@ -136,7 +136,6 @@ python-dateutil==2.9.0.post0
 python-dotenv==1.2.2
 pytz==2024.1
 PyWavelets==1.5.0
-pywin32==306
 pyzmq==25.1.2
 referencing==0.36.2
 regex==2023.12.25
