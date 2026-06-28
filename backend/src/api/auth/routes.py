@@ -39,7 +39,8 @@ class PasswordResetToken(db.Model):
 
 def _send_reset_email(to_email: str, reset_url: str) -> None:
     mail_server   = os.getenv("MAIL_SERVER", "smtp.gmail.com")
-    mail_port     = int(os.getenv("MAIL_PORT", "587"))
+    mail_port     = int(os.getenv("MAIL_PORT"
+                                  , "587"))
     mail_user     = os.getenv("MAIL_USERNAME", "")
     mail_password = os.getenv("MAIL_PASSWORD", "").replace(" ", "")
     mail_from     = os.getenv("MAIL_FROM", mail_user)
@@ -69,10 +70,16 @@ def _send_reset_email(to_email: str, reset_url: str) -> None:
     msg.attach(MIMEText(text_body, "plain"))
     msg.attach(MIMEText(html_body, "html"))
 
-    with smtplib.SMTP(mail_server, mail_port, timeout=15) as server:
-        server.starttls()
-        server.login(mail_user, mail_password)
-        server.sendmail(mail_from, to_email, msg.as_string())
+    use_ssl = int(os.getenv("MAIL_PORT", "587")) == 465
+    if use_ssl:
+        with smtplib.SMTP_SSL(mail_server, mail_port, timeout=15) as server:
+            server.login(mail_user, mail_password)
+            server.sendmail(mail_from, to_email, msg.as_string())
+    else:
+        with smtplib.SMTP(mail_server, mail_port, timeout=15) as server:
+            server.starttls()
+            server.login(mail_user, mail_password)
+            server.sendmail(mail_from, to_email, msg.as_string())
 
 
 def _get_secret():
